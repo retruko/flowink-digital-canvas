@@ -66,10 +66,12 @@ const statusLabels = {
 
 export function RecentAppointments() {
   return (
-    <Card>
+    <Card className="rounded-3xl border-border/30 bg-gradient-to-br from-card via-card to-card/95 shadow-medium backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Clock className="h-5 w-5" />
+        <CardTitle className="flex items-center gap-3 text-xl font-bold font-display">
+          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+            <Clock className="h-5 w-5 text-primary" />
+          </div>
           Citas de Hoy
         </CardTitle>
       </CardHeader>
@@ -78,38 +80,33 @@ export function RecentAppointments() {
           {appointments.map((appointment) => (
             <div
               key={appointment.id}
-              className="flex items-center space-x-4 p-3 rounded-lg border border-border hover:bg-muted/50 transition-colors"
+              className="flex items-center space-x-4 p-4 rounded-2xl border border-border/30 hover:border-border/50 bg-gradient-to-r from-card to-card/80 hover:from-accent/20 hover:to-accent/10 transition-all duration-300 group hover:shadow-medium"
             >
-              <Avatar className="h-10 w-10">
-                <AvatarFallback className="bg-primary/10 text-primary">
+              <Avatar className="h-12 w-12 ring-2 ring-background shadow-soft">
+                <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/10 text-primary font-bold">
                   {appointment.clientName.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
               
-              <div className="flex-1 space-y-1">
+              <div className="flex-1 space-y-2">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium">{appointment.clientName}</p>
+                  <p className="text-sm font-bold group-hover:text-foreground transition-colors">{appointment.clientName}</p>
                   <Badge 
-                    className={statusColors[appointment.status]}
+                    className={`${statusColors[appointment.status]} rounded-2xl px-3 py-1 font-semibold shadow-soft`}
                     variant="secondary"
                   >
                     {statusLabels[appointment.status]}
                   </Badge>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
-                  <span>{appointment.service}</span>
-                  <span>•</span>
-                  <span>{appointment.time}</span>
-                  <span>•</span>
-                  <span>{appointment.artist}</span>
+                <div className="flex items-center gap-4 text-xs text-muted-foreground font-medium">
+                  <span className="bg-muted/50 px-2 py-1 rounded-xl">{appointment.service}</span>
+                  <span className="bg-muted/50 px-2 py-1 rounded-xl">{appointment.time}</span>
+                  <span className="bg-muted/50 px-2 py-1 rounded-xl">{appointment.artist}</span>
                   {appointment.location && (
-                    <>
-                      <span>•</span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="h-3 w-3" />
-                        {appointment.location}
-                      </span>
-                    </>
+                    <span className="flex items-center gap-1 bg-muted/50 px-2 py-1 rounded-xl">
+                      <MapPin className="h-3 w-3" />
+                      {appointment.location}
+                    </span>
                   )}
                 </div>
               </div>
