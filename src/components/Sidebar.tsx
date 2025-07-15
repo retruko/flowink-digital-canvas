@@ -1,33 +1,46 @@
 import { 
+  LayoutDashboard,
   Calendar,
   Users,
+  UserPlus,
   FileText,
   Package,
   DollarSign,
   Settings,
   BarChart3,
-  UserPlus,
+  Building2,
+  UserCog,
+  Palette,
+  Shield,
   Clock,
-  Shield
+  TrendingUp
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const menuItems = [
   {
     section: "Principal",
     items: [
-      { icon: BarChart3, label: "Dashboard", href: "/", active: true },
-      { icon: Calendar, label: "Agenda", href: "/agenda", badge: "5" },
-      { icon: Users, label: "Clientes", href: "/clientes" },
-      { icon: UserPlus, label: "Leads", href: "/leads", badge: "12" },
+      { icon: LayoutDashboard, label: "Dashboard", href: "/", active: true },
+      { icon: Calendar, label: "Agenda", href: "/agenda", badge: "8" },
     ]
   },
   {
-    section: "Operaciones",
+    section: "Gestión",
     items: [
+      { icon: Users, label: "Clientes", href: "/clientes", count: "284" },
+      { icon: UserPlus, label: "Leads", href: "/leads", badge: "12" },
       { icon: FileText, label: "Consentimientos", href: "/consentimientos" },
+    ]
+  },
+  {
+    section: "Estudio",
+    items: [
+      { icon: Building2, label: "Mi Estudio", href: "/estudio" },
+      { icon: UserCog, label: "Managers", href: "/managers", count: "2" },
+      { icon: Palette, label: "Tatuadores", href: "/tatuadores", count: "5" },
       { icon: Package, label: "Inventario", href: "/inventario", badge: "!" },
       { icon: Clock, label: "Horarios", href: "/horarios" },
     ]
@@ -36,7 +49,8 @@ const menuItems = [
     section: "Finanzas",
     items: [
       { icon: DollarSign, label: "Ingresos", href: "/ingresos" },
-      { icon: BarChart3, label: "Comisiones", href: "/comisiones" },
+      { icon: TrendingUp, label: "Comisiones", href: "/comisiones", badge: "3" },
+      { icon: BarChart3, label: "Reportes", href: "/reportes" },
     ]
   },
   {
@@ -48,17 +62,22 @@ const menuItems = [
   }
 ];
 
+const teamMembers = [
+  { name: "Alex Rivera", role: "Dueño", avatar: "AR", status: "online" },
+  { name: "Sam Torres", role: "Manager", avatar: "ST", status: "online" },
+  { name: "Luna Costa", role: "Artista", avatar: "LC", status: "busy" },
+];
+
 export function Sidebar() {
   return (
-    <aside className="w-64 border-r border-border bg-card/30 backdrop-blur-sm">
+    <aside className="w-72 border-r border-border bg-card/30 backdrop-blur-sm">
       <div className="flex h-full flex-col">
         <div className="flex-1 overflow-auto py-6">
-          <div className="space-y-6 px-3">
+          <div className="space-y-6 px-4">
             {menuItems.map((section, sectionIndex) => (
               <div key={section.section}>
-                {sectionIndex > 0 && <Separator className="my-4" />}
-                <div className="space-y-1">
-                  <h3 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                <div className="space-y-2">
+                  <h3 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
                     {section.section}
                   </h3>
                   <div className="space-y-1">
@@ -68,23 +87,64 @@ export function Sidebar() {
                         <Button
                           key={item.href}
                           variant={item.active ? "secondary" : "ghost"}
-                          className="w-full justify-start"
+                          className={`w-full justify-start h-10 text-sm ${
+                            item.active 
+                              ? "bg-accent/50 text-accent-foreground border border-border/50 shadow-sm" 
+                              : "hover:bg-accent/30 text-muted-foreground hover:text-foreground"
+                          }`}
                           size="sm"
                         >
-                          <Icon className="mr-2 h-4 w-4" />
-                          {item.label}
+                          <Icon className="mr-3 h-4 w-4" />
+                          <span className="flex-1 text-left">{item.label}</span>
                           {item.badge && (
                             <Badge 
                               variant={item.badge === "!" ? "destructive" : "secondary"}
-                              className="ml-auto h-5 w-5 p-0 text-xs"
+                              className={`h-5 w-5 p-0 text-xs ml-auto ${
+                                item.badge === "!" 
+                                  ? "bg-destructive/20 text-destructive border-destructive/30" 
+                                  : "bg-primary/20 text-primary border-primary/30"
+                              }`}
                             >
                               {item.badge}
                             </Badge>
+                          )}
+                          {item.count && (
+                            <span className="text-xs text-muted-foreground ml-auto">
+                              {item.count}
+                            </span>
                           )}
                         </Button>
                       );
                     })}
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Team Section */}
+        <div className="border-t border-border p-4">
+          <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">
+            Equipo Online
+          </h3>
+          <div className="space-y-2">
+            {teamMembers.map((member) => (
+              <div key={member.name} className="flex items-center space-x-3 p-2 rounded-lg hover:bg-accent/30 transition-colors">
+                <div className="relative">
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback className="bg-primary/10 text-primary text-xs">
+                      {member.avatar}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className={`absolute -bottom-0.5 -right-0.5 h-3 w-3 rounded-full border-2 border-background ${
+                    member.status === "online" ? "bg-success" : 
+                    member.status === "busy" ? "bg-warning" : "bg-muted"
+                  }`} />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium truncate">{member.name}</p>
+                  <p className="text-xs text-muted-foreground">{member.role}</p>
                 </div>
               </div>
             ))}
