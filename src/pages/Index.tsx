@@ -1,11 +1,34 @@
-import { Calendar, Users, DollarSign, Package, TrendingUp, AlertTriangle, Clock, Target } from "lucide-react";
+import { Calendar, Users, DollarSign, Package, TrendingUp, AlertTriangle, Clock, Target, LogOut } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { useToast } from "@/hooks/use-toast";
 import { Header } from "@/components/Header";
 import { Sidebar } from "@/components/Sidebar";
 import { DashboardCard } from "@/components/DashboardCard";
 import { RecentAppointments } from "@/components/RecentAppointments";
 import { QuickActions } from "@/components/QuickActions";
 
-const Index = () => {
+function DashboardContent() {
+  const { user, signOut } = useAuth();
+  const { toast } = useToast();
+
+  const handleSignOut = async () => {
+    const { error } = await signOut();
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "No se pudo cerrar sesión",
+      });
+    } else {
+      toast({
+        title: "Sesión cerrada",
+        description: "Has cerrado sesión correctamente",
+      });
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -24,13 +47,19 @@ const Index = () => {
                     Gestión completa de tu estudio de tatuaje
                   </p>
                 </div>
-                <div className="text-right">
-                  <p className="text-sm text-muted-foreground">Hoy</p>
-                  <p className="text-2xl font-semibold">{new Date().toLocaleDateString('es-ES', { 
-                    weekday: 'long', 
-                    day: 'numeric', 
-                    month: 'long' 
-                  })}</p>
+                <div className="flex items-center gap-6">
+                  <div className="text-right">
+                    <p className="text-sm text-muted-foreground">Bienvenido, {user?.email}</p>
+                    <p className="text-xl font-semibold">{new Date().toLocaleDateString('es-ES', { 
+                      weekday: 'long', 
+                      day: 'numeric', 
+                      month: 'long' 
+                    })}</p>
+                  </div>
+                  <Button onClick={handleSignOut} variant="outline" size="sm">
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Cerrar Sesión
+                  </Button>
                 </div>
               </div>
             </div>
@@ -119,6 +148,14 @@ const Index = () => {
         </main>
       </div>
     </div>
+  );
+}
+
+const Index = () => {
+  return (
+    <ProtectedRoute>
+      <DashboardContent />
+    </ProtectedRoute>
   );
 };
 
