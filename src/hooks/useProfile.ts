@@ -32,13 +32,13 @@ export const useProfile = () => {
           .from('profiles')
           .select('*')
           .eq('user_id', user.id)
-          .single();
+          .maybeSingle();
 
-        if (error && error.code !== 'PGRST116') {
+        if (error) {
           console.error('Error fetching profile:', error);
-        } else {
-          setProfile(data);
         }
+        
+        setProfile(data);
       } catch (error) {
         console.error('Error fetching profile:', error);
       } finally {

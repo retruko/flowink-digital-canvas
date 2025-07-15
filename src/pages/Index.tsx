@@ -156,7 +156,10 @@ function DashboardContent() {
   );
 
   const renderDashboardByRole = () => {
-    switch (profile?.role) {
+    // Si no hay profile o role es null, usar el dashboard por defecto (Manager)
+    const userRole = profile?.role || 'user';
+    
+    switch (userRole) {
       case 'admin':
         return <AdminDashboard />;
       case 'artist':
