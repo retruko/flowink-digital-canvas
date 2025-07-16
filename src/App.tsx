@@ -13,6 +13,7 @@ import Artists from "./pages/Artists";
 import Inventory from "./pages/Inventory";
 import Invoices from "./pages/Invoices";
 import Settings from "./pages/Settings";
+import Leads from "./pages/Leads";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/clientes" element={<Clients />} />
+            <Route path="/leads" element={<Leads />} />
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/tatuadores" element={<Artists />} />
             <Route path="/inventario" element={<Inventory />} />
