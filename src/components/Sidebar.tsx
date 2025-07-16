@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
   {
@@ -69,6 +70,8 @@ const teamMembers = [
 ];
 
 export function Sidebar() {
+  const location = useLocation();
+
   return (
     <aside className="w-80 border-r border-border bg-gradient-to-b from-card/50 via-card/30 to-card/50 backdrop-blur-sm">
       <div className="flex h-full flex-col">
@@ -83,42 +86,46 @@ export function Sidebar() {
                   <div className="space-y-2">
                     {section.items.map((item) => {
                       const Icon = item.icon;
+                      const isActive = location.pathname === item.href;
                       return (
                         <Button
                           key={item.href}
-                          variant={item.active ? "secondary" : "ghost"}
+                          variant={isActive ? "secondary" : "ghost"}
                           className={`w-full justify-start h-14 text-sm font-medium rounded-2xl transition-all duration-300 ${
-                            item.active 
+                            isActive 
                               ? "bg-gradient-to-r from-accent via-accent/80 to-accent text-accent-foreground border border-border/30 shadow-medium" 
                               : "hover:bg-gradient-to-r hover:from-accent/30 hover:to-accent/20 text-muted-foreground hover:text-foreground hover:shadow-soft"
                           }`}
                           size="sm"
+                          asChild
                         >
-                          <div className={`mr-4 h-10 w-10 rounded-xl flex items-center justify-center ${
-                            item.active 
-                              ? "bg-primary/20 text-primary" 
-                              : "bg-muted/30 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
-                          } transition-all duration-300`}>
-                            <Icon className="h-5 w-5" />
-                          </div>
-                          <span className="flex-1 text-left font-semibold">{item.label}</span>
-                          {item.badge && (
-                            <Badge 
-                              variant="secondary"
-                              className={`h-6 w-6 p-0 text-xs ml-auto rounded-full shadow-soft ${
-                                item.badge === "!" 
-                                  ? "bg-destructive/20 text-destructive border border-destructive/30" 
-                                  : "bg-primary/20 text-primary border border-primary/30"
-                              }`}
-                            >
-                              {item.badge}
-                            </Badge>
-                          )}
-                          {item.count && (
-                            <span className="text-sm text-muted-foreground ml-auto bg-muted/50 px-2 py-1 rounded-xl">
-                              {item.count}
-                            </span>
-                          )}
+                          <Link to={item.href}>
+                            <div className={`mr-4 h-10 w-10 rounded-xl flex items-center justify-center ${
+                              isActive 
+                                ? "bg-primary/20 text-primary" 
+                                : "bg-muted/30 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
+                            } transition-all duration-300`}>
+                              <Icon className="h-5 w-5" />
+                            </div>
+                            <span className="flex-1 text-left font-semibold">{item.label}</span>
+                            {item.badge && (
+                              <Badge 
+                                variant="secondary"
+                                className={`h-6 w-6 p-0 text-xs ml-auto rounded-full shadow-soft ${
+                                  item.badge === "!" 
+                                    ? "bg-destructive/20 text-destructive border border-destructive/30" 
+                                    : "bg-primary/20 text-primary border border-primary/30"
+                                }`}
+                              >
+                                {item.badge}
+                              </Badge>
+                            )}
+                            {item.count && (
+                              <span className="text-sm text-muted-foreground ml-auto bg-muted/50 px-2 py-1 rounded-xl">
+                                {item.count}
+                              </span>
+                            )}
+                          </Link>
                         </Button>
                       );
                     })}

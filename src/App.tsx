@@ -7,6 +7,12 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import NotFound from "./pages/NotFound";
+import Clients from "./pages/Clients";
+import Appointments from "./pages/Appointments";
+import Artists from "./pages/Artists";
+import Inventory from "./pages/Inventory";
+import Invoices from "./pages/Invoices";
+import Settings from "./pages/Settings";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +26,12 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
+            <Route path="/clientes" element={<Clients />} />
+            <Route path="/appointments" element={<Appointments />} />
+            <Route path="/tatuadores" element={<Artists />} />
+            <Route path="/inventario" element={<Inventory />} />
+            <Route path="/invoices" element={<Invoices />} />
+            <Route path="/configuracion" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
