@@ -12,20 +12,20 @@ const Artists = () => {
         <Header />
         <div className="flex">
           <Sidebar />
-          <main className="flex-1 p-8">
-            <div className="max-w-7xl mx-auto space-y-8">
-              <div className="flex items-center justify-between">
+          <main className="flex-1 p-4 sm:p-6 lg:p-8">
+            <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h1 className="text-4xl font-bold mb-2">Tatuadores</h1>
-                  <p className="text-muted-foreground">Gestiona el equipo de artistas</p>
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">Tatuadores</h1>
+                  <p className="text-sm sm:text-base text-muted-foreground">Gestiona el equipo de artistas</p>
                 </div>
-                <Button className="bg-primary text-primary-foreground">
+                <Button className="bg-primary text-primary-foreground w-full sm:w-auto">
                   <Plus className="h-4 w-4 mr-2" />
                   Nuevo Artista
                 </Button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <DashboardCard
                   title="Total Artistas"
                   value="5"
@@ -52,12 +52,12 @@ const Artists = () => {
                 />
               </div>
 
-              <div className="bg-card rounded-lg p-6 shadow-lg">
-                <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-2xl font-semibold">Equipo de Artistas</h2>
-                  <div className="flex gap-4">
-                    <Button variant="outline">Ver Horarios</Button>
-                    <Button variant="outline">Gestionar</Button>
+              <div className="bg-card rounded-lg p-4 sm:p-6 shadow-lg">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
+                  <h2 className="text-xl sm:text-2xl font-semibold">Equipo de Artistas</h2>
+                  <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
+                    <Button variant="outline" className="w-full sm:w-auto">Ver Horarios</Button>
+                    <Button variant="outline" className="w-full sm:w-auto">Gestionar</Button>
                   </div>
                 </div>
                 <div className="text-center py-12 text-muted-foreground">

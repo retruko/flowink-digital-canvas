@@ -12,16 +12,16 @@ const Settings = () => {
         <Header />
         <div className="flex">
           <Sidebar />
-          <main className="flex-1 p-8">
-            <div className="max-w-7xl mx-auto space-y-8">
+          <main className="flex-1 p-4 sm:p-6 lg:p-8">
+            <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
               <div className="flex items-center justify-between">
                 <div>
-                  <h1 className="text-4xl font-bold mb-2">Configuración</h1>
-                  <p className="text-muted-foreground">Ajustes del sistema</p>
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">Configuración</h1>
+                  <p className="text-sm sm:text-base text-muted-foreground">Ajustes del sistema</p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                 <Card>
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">

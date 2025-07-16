@@ -68,24 +68,24 @@ export default function Leads() {
         <div className="flex-1">
           <Header />
           
-          <main className="p-8">
-            <div className="max-w-7xl mx-auto space-y-8">
+          <main className="p-4 sm:p-6 lg:p-8">
+            <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
               {/* Header */}
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h1 className="text-3xl font-bold tracking-tight">Leads</h1>
-                  <p className="text-muted-foreground mt-2">
+                  <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Leads</h1>
+                  <p className="text-sm sm:text-base text-muted-foreground mt-2">
                     Gestiona tus leads y conviértelos en clientes
                   </p>
                 </div>
-                <Button className="shadow-lg">
+                <Button className="shadow-lg w-full sm:w-auto">
                   <UserPlus className="h-4 w-4 mr-2" />
                   Nuevo Lead
                 </Button>
               </div>
 
               {/* Stats Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <Card className="shadow-soft border-border/50">
                   <CardHeader className="pb-3">
                     <CardTitle className="text-sm font-medium text-muted-foreground">Total Leads</CardTitle>
@@ -134,56 +134,56 @@ export default function Leads() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    {mockLeads.map((lead) => (
-                      <div key={lead.id} className="flex items-center justify-between p-4 rounded-lg border border-border/50 hover:bg-accent/30 transition-colors">
-                        <div className="flex-1 space-y-2">
-                          <div className="flex items-center gap-4">
-                            <h3 className="font-semibold">{lead.name}</h3>
-                            <Badge className={getStatusColor(lead.status)}>
-                              {getStatusText(lead.status)}
-                            </Badge>
-                            <span className="text-sm text-muted-foreground">
-                              Origen: {lead.source}
-                            </span>
-                          </div>
-                          
-                          <div className="flex items-center gap-6 text-sm text-muted-foreground">
-                            <div className="flex items-center gap-2">
-                              <Mail className="h-4 w-4" />
-                              {lead.email}
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Phone className="h-4 w-4" />
-                              {lead.phone}
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <Calendar className="h-4 w-4" />
-                              {lead.createdAt}
-                            </div>
-                          </div>
-                          
-                          <div className="text-sm">
-                            <span className="font-medium">Interés:</span> {lead.interest}
-                          </div>
-                          
-                          {lead.notes && (
-                            <div className="text-sm text-muted-foreground">
-                              <span className="font-medium">Notas:</span> {lead.notes}
-                            </div>
-                          )}
-                        </div>
-                        
-                        <div className="flex items-center gap-2">
-                          <Button variant="outline" size="sm">
-                            <Eye className="h-4 w-4 mr-2" />
-                            Ver
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            <Phone className="h-4 w-4 mr-2" />
-                            Contactar
-                          </Button>
-                        </div>
-                      </div>
+                     {mockLeads.map((lead) => (
+                       <div key={lead.id} className="flex flex-col lg:flex-row lg:items-center lg:justify-between p-4 rounded-lg border border-border/50 hover:bg-accent/30 transition-colors space-y-4 lg:space-y-0">
+                         <div className="flex-1 space-y-2">
+                           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                             <h3 className="font-semibold">{lead.name}</h3>
+                             <Badge className={getStatusColor(lead.status)}>
+                               {getStatusText(lead.status)}
+                             </Badge>
+                             <span className="text-sm text-muted-foreground">
+                               Origen: {lead.source}
+                             </span>
+                           </div>
+                           
+                           <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 text-sm text-muted-foreground">
+                             <div className="flex items-center gap-2">
+                               <Mail className="h-4 w-4" />
+                               <span className="break-all">{lead.email}</span>
+                             </div>
+                             <div className="flex items-center gap-2">
+                               <Phone className="h-4 w-4" />
+                               {lead.phone}
+                             </div>
+                             <div className="flex items-center gap-2">
+                               <Calendar className="h-4 w-4" />
+                               {lead.createdAt}
+                             </div>
+                           </div>
+                           
+                           <div className="text-sm">
+                             <span className="font-medium">Interés:</span> {lead.interest}
+                           </div>
+                           
+                           {lead.notes && (
+                             <div className="text-sm text-muted-foreground">
+                               <span className="font-medium">Notas:</span> {lead.notes}
+                             </div>
+                           )}
+                         </div>
+                         
+                         <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                           <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                             <Eye className="h-4 w-4 mr-2" />
+                             Ver
+                           </Button>
+                           <Button variant="outline" size="sm" className="w-full sm:w-auto">
+                             <Phone className="h-4 w-4 mr-2" />
+                             Contactar
+                           </Button>
+                         </div>
+                       </div>
                     ))}
                   </div>
                 </CardContent>
