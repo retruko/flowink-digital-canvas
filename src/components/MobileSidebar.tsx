@@ -34,16 +34,20 @@ const menuItems = [
       { icon: Users, label: "Clientes", href: "/clientes", count: "284" },
       { icon: UserPlus, label: "Leads", href: "/leads", badge: "12" },
       { icon: FileText, label: "Consentimientos", href: "/consentimientos" },
+      { icon: Package, label: "Inventario", href: "/inventario", badge: "!" },
     ]
   },
   {
     section: "Estudio",
     items: [
-      { icon: Building2, label: "Mi Estudio", href: "/estudio" },
+      { icon: Building2, label: "Mi Estudio", href: "/estudio", 
+        subItems: [
+          { icon: Building2, label: "Cabinas", href: "/estudio/cabinas" },
+          { icon: Clock, label: "Horarios", href: "/estudio/horarios" },
+        ]
+      },
       { icon: UserCog, label: "Managers", href: "/managers", count: "2" },
       { icon: Palette, label: "Tatuadores", href: "/tatuadores", count: "5" },
-      { icon: Package, label: "Inventario", href: "/inventario", badge: "!" },
-      { icon: Clock, label: "Horarios", href: "/horarios" },
     ]
   },
   {
