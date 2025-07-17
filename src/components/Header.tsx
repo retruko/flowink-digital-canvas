@@ -1,4 +1,4 @@
-import { Search, Bell, Settings, User, MessageSquare } from "lucide-react";
+import { Search, Bell, Settings, User, MessageSquare, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -8,14 +8,32 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Badge } from "@/components/ui/badge";
 import flowinkLogo from "@/assets/flowink-logo.png";
+import { MobileSidebar } from "./MobileSidebar";
 
 export function Header() {
   return (
     <header className="border-b border-border bg-card/90 backdrop-blur-xl sticky top-0 z-50 shadow-soft">
       <div className="flex h-16 sm:h-20 items-center justify-between px-4 sm:px-8">
         <div className="flex items-center space-x-2 sm:space-x-8">
+          {/* Mobile menu button */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="sm" className="lg:hidden h-8 w-8 sm:h-10 sm:w-10 rounded-2xl hover:bg-accent/50">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="p-0 w-80">
+              <MobileSidebar />
+            </SheetContent>
+          </Sheet>
+
           <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="flex items-center justify-center h-8 w-8 sm:h-12 sm:w-12 rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 shadow-glow">
               <img src={flowinkLogo} alt="FlowInk" className="h-4 w-4 sm:h-7 sm:w-7 filter brightness-0 invert" />

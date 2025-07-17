@@ -73,7 +73,7 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:block w-80 border-r border-border bg-gradient-to-b from-card/50 via-card/30 to-card/50 backdrop-blur-sm">
+    <aside className="hidden lg:flex lg:w-80 border-r border-border bg-gradient-to-b from-card/50 via-card/30 to-card/50 backdrop-blur-sm h-full flex-col">
       <div className="flex h-full flex-col">
         <div className="flex-1 overflow-auto py-8">
           <div className="space-y-8 px-6">
