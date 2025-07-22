@@ -1,4 +1,4 @@
-import { Calendar, Users, Clock, Target, TrendingUp, Phone, Package, AlertCircle, CheckCircle2, XCircle, DollarSign, CreditCard, Banknote } from "lucide-react";
+import { Calendar, Users, Clock, Target, TrendingUp, Phone, Package, AlertCircle, CheckCircle2, XCircle, DollarSign, CreditCard, Banknote, Plus } from "lucide-react";
 import { DashboardCard } from "@/components/DashboardCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -189,13 +189,37 @@ export const ManagerDashboard = () => {
       <div>
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Phone className="w-5 h-5 text-primary" />
-              Potenciales Clientes
-            </CardTitle>
-            <CardDescription>
-              Clientes que requieren seguimiento y contacto
-            </CardDescription>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle className="flex items-center gap-2">
+                  <Phone className="w-5 h-5 text-primary" />
+                  Potenciales Clientes
+                </CardTitle>
+                <CardDescription>
+                  Clientes que requieren seguimiento y contacto
+                </CardDescription>
+              </div>
+              <Button variant="outline" size="sm">
+                <Plus className="w-4 h-4 mr-2" />
+                Añadir Cliente
+              </Button>
+            </div>
+            
+            {/* Leyenda de colores */}
+            <div className="flex items-center gap-6 mt-4 p-3 bg-muted/50 rounded-lg">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500" />
+                <span className="text-sm text-muted-foreground">Pendiente de contestación</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-yellow-500" />
+                <span className="text-sm text-muted-foreground">Contestado</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 rounded-full bg-green-500" />
+                <span className="text-sm text-muted-foreground">Fidelizado</span>
+              </div>
+            </div>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
