@@ -93,7 +93,7 @@ export const ManagerDashboard = () => {
           </Select>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           <DashboardCard
             title={`Ingresos ${getPeriodLabel()}`}
             value={getRevenueData().value}
@@ -114,13 +114,6 @@ export const ManagerDashboard = () => {
             description="8 reservas confirmadas"
             icon={CreditCard}
             trend={{ value: 22, label: "vs período anterior", positive: true }}
-          />
-          <DashboardCard
-            title="Ticket Promedio"
-            value="€156"
-            description="Por servicio completado"
-            icon={Banknote}
-            trend={{ value: 5, label: "vs período anterior", positive: true }}
           />
         </div>
       </div>
