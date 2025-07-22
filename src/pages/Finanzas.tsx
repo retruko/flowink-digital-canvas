@@ -109,14 +109,14 @@ export default function Finanzas() {
         <Sidebar />
         <MobileSidebar />
         
-        <main className="flex-1 p-8">
-          <div className="space-y-8">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
+          <div className="max-w-7xl mx-auto space-y-6">
             {/* Header */}
             <div className="space-y-2">
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
                 Finanzas
               </h1>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base md:text-lg text-muted-foreground">
                 Gestión completa de ingresos, gastos y reportes financieros
               </p>
             </div>
@@ -179,15 +179,29 @@ export default function Finanzas() {
             </div>
 
             {/* Pestañas de contenido */}
-            <div className="bg-card rounded-lg border">
-              <Tabs defaultValue="ingresos" className="space-y-0">
-                <div className="border-b px-6 py-4">
-                  <TabsList className="grid w-full max-w-md grid-cols-3 bg-muted/30">
-                    <TabsTrigger value="ingresos" className="text-sm font-medium">💰 Ingresos</TabsTrigger>
-                    <TabsTrigger value="gastos" className="text-sm font-medium">📊 Gastos</TabsTrigger>
-                    <TabsTrigger value="reportes" className="text-sm font-medium">📈 Reportes</TabsTrigger>
-                  </TabsList>
-                </div>
+            <Tabs defaultValue="ingresos" className="space-y-6">
+              <div className="border-b">
+                <TabsList className="h-12 w-auto bg-transparent p-0">
+                  <TabsTrigger 
+                    value="ingresos" 
+                    className="h-12 px-6 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none"
+                  >
+                    💰 Ingresos
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="gastos" 
+                    className="h-12 px-6 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none"
+                  >
+                    📊 Gastos
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="reportes" 
+                    className="h-12 px-6 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none"
+                  >
+                    📈 Reportes
+                  </TabsTrigger>
+                </TabsList>
+              </div>
 
               {/* Pestaña de Ingresos */}
               <TabsContent value="ingresos" className="p-6 space-y-6">
@@ -476,7 +490,6 @@ export default function Finanzas() {
                 </Card>
               </TabsContent>
             </Tabs>
-            </div>
           </div>
         </main>
       </div>

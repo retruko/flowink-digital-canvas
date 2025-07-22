@@ -24,17 +24,16 @@ const menuItems = [
   {
     section: "Principal",
     items: [
-      { icon: LayoutDashboard, label: "Panel", href: "/", active: true },
-      { icon: DollarSign, label: "Finanzas", href: "/finanzas" },
+      { icon: LayoutDashboard, label: "Inicio", href: "/", active: true },
       { icon: Calendar, label: "Agenda", href: "/agenda", badge: "8" },
+      { icon: Users, label: "Clientes", href: "/clientes", count: "284" },
     ]
   },
   {
     section: "Gestión",
     items: [
-      { icon: Users, label: "Clientes", href: "/clientes", count: "284" },
-      { icon: UserPlus, label: "Leads", href: "/leads", badge: "12" },
-      { icon: FileText, label: "Consentimientos", href: "/consentimientos" },
+      { icon: DollarSign, label: "Finanzas", href: "/finanzas" },
+      { icon: UserPlus, label: "Pot. Clientes", href: "/leads", badge: "12" },
       { icon: Package, label: "Inventario", href: "/inventario", badge: "!" },
     ]
   },
