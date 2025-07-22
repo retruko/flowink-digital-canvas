@@ -73,51 +73,6 @@ export const ManagerDashboard = () => {
         />
       </div>
 
-      {/* Revenue Section */}
-      <div className="space-y-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h2 className="text-2xl font-bold">Ingresos</h2>
-            <p className="text-sm text-muted-foreground">Resumen de ventas y facturación</p>
-          </div>
-          <Select value={period} onValueChange={setPeriod}>
-            <SelectTrigger className="w-48">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="today">Hoy</SelectItem>
-              <SelectItem value="7days">Últimos 7 días</SelectItem>
-              <SelectItem value="30days">Últimos 30 días</SelectItem>
-              <SelectItem value="3months">Últimos 3 meses</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          <DashboardCard
-            title={`Ingresos ${getPeriodLabel()}`}
-            value={getRevenueData().value}
-            description={getRevenueData().description}
-            icon={DollarSign}
-            trend={{ value: getRevenueData().trend, label: "vs período anterior", positive: getRevenueData().trend > 0 }}
-          />
-          <DashboardCard
-            title="Servicios Vendidos"
-            value="24"
-            description="15 tatuajes, 9 consultas"
-            icon={Target}
-            trend={{ value: 18, label: "vs período anterior", positive: true }}
-          />
-          <DashboardCard
-            title="Depósitos Cobrados"
-            value="€340"
-            description="8 reservas confirmadas"
-            icon={CreditCard}
-            trend={{ value: 22, label: "vs período anterior", positive: true }}
-          />
-        </div>
-      </div>
-
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Agenda del Día */}
         <div>
@@ -275,6 +230,51 @@ export const ManagerDashboard = () => {
             </div>
           </CardContent>
         </Card>
+      </div>
+
+      {/* Revenue Section */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold">Ingresos</h2>
+            <p className="text-sm text-muted-foreground">Resumen de ventas y facturación</p>
+          </div>
+          <Select value={period} onValueChange={setPeriod}>
+            <SelectTrigger className="w-48">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="today">Hoy</SelectItem>
+              <SelectItem value="7days">Últimos 7 días</SelectItem>
+              <SelectItem value="30days">Últimos 30 días</SelectItem>
+              <SelectItem value="3months">Últimos 3 meses</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <DashboardCard
+            title={`Ingresos ${getPeriodLabel()}`}
+            value={getRevenueData().value}
+            description={getRevenueData().description}
+            icon={DollarSign}
+            trend={{ value: getRevenueData().trend, label: "vs período anterior", positive: getRevenueData().trend > 0 }}
+          />
+          <DashboardCard
+            title="Servicios Vendidos"
+            value="24"
+            description="15 tatuajes, 9 consultas"
+            icon={Target}
+            trend={{ value: 18, label: "vs período anterior", positive: true }}
+          />
+          <DashboardCard
+            title="Depósitos Cobrados"
+            value="€340"
+            description="8 reservas confirmadas"
+            icon={CreditCard}
+            trend={{ value: 22, label: "vs período anterior", positive: true }}
+          />
+        </div>
       </div>
     </div>
   );
