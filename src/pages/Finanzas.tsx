@@ -13,7 +13,6 @@ import { MobileSidebar } from "@/components/MobileSidebar";
 
 export default function Finanzas() {
   const [period, setPeriod] = useState("30days");
-  const [filterType, setFilterType] = useState("all");
 
   const getPeriodData = () => {
     switch (period) {
@@ -109,14 +108,14 @@ export default function Finanzas() {
         <Sidebar />
         <MobileSidebar />
         
-        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-auto">
+        <main className="flex-1 p-6 overflow-auto">
           <div className="max-w-7xl mx-auto space-y-6">
             {/* Header */}
             <div className="space-y-2">
-              <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
+              <h1 className="text-3xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
                 Finanzas
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground">
+              <p className="text-lg text-muted-foreground">
                 Gestión completa de ingresos, gastos y reportes financieros
               </p>
             </div>
@@ -204,7 +203,7 @@ export default function Finanzas() {
               </div>
 
               {/* Pestaña de Ingresos */}
-              <TabsContent value="ingresos" className="p-6 space-y-6">
+              <TabsContent value="ingresos" className="space-y-6">
                 <div className="grid gap-6 md:grid-cols-3">
                   <DashboardCard
                     title="Por Servicios"
@@ -247,7 +246,7 @@ export default function Finanzas() {
                       {recentRevenue.map((transaction) => (
                         <div key={transaction.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors">
                           <div className="flex items-center gap-4">
-                            <div className="text-sm text-muted-foreground font-mono">
+                            <div className="text-sm text-muted-foreground font-mono bg-muted/50 px-2 py-1 rounded">
                               {transaction.date}
                             </div>
                             <div>
@@ -272,7 +271,7 @@ export default function Finanzas() {
               </TabsContent>
 
               {/* Pestaña de Gastos */}
-              <TabsContent value="gastos" className="p-6 space-y-6">
+              <TabsContent value="gastos" className="space-y-6">
                 <div className="flex justify-end">
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
@@ -392,7 +391,7 @@ export default function Finanzas() {
               </TabsContent>
 
               {/* Pestaña de Reportes */}
-              <TabsContent value="reportes" className="p-6 space-y-6">
+              <TabsContent value="reportes" className="space-y-6">
                 <div className="grid gap-6 md:grid-cols-2">
                   <Card>
                     <CardHeader>

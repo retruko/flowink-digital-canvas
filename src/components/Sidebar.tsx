@@ -54,7 +54,6 @@ const menuItems = [
     section: "Configuración",
     items: [
       { icon: Settings, label: "General", href: "/configuracion" },
-      { icon: Shield, label: "Permisos", href: "/permisos" },
     ]
   }
 ];
