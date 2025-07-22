@@ -16,6 +16,7 @@ import Settings from "./pages/Settings";
 import Leads from "./pages/Leads";
 import Revenue from "./pages/Revenue";
 import Finanzas from "./pages/Finanzas";
+import Agenda from "./pages/Agenda";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/clientes" element={<Clients />} />
+            <Route path="/agenda" element={<Agenda />} />
             <Route path="/leads" element={<Leads />} />
             <Route path="/appointments" element={<Appointments />} />
             <Route path="/tatuadores" element={<Artists />} />
