@@ -73,14 +73,14 @@ export default function Leads() {
               {/* Header */}
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Leads</h1>
+                  <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Potenciales Clientes</h1>
                   <p className="text-sm sm:text-base text-muted-foreground mt-2">
-                    Gestiona tus leads y conviértelos en clientes
+                    Gestiona tus potenciales clientes y conviértelos en clientes
                   </p>
                 </div>
                 <Button className="shadow-lg w-full sm:w-auto">
                   <UserPlus className="h-4 w-4 mr-2" />
-                  Nuevo Lead
+                  Nuevo Potencial Cliente
                 </Button>
               </div>
 
@@ -88,7 +88,7 @@ export default function Leads() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <Card className="shadow-soft border-border/50">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-sm font-medium text-muted-foreground">Total Leads</CardTitle>
+                    <CardTitle className="text-sm font-medium text-muted-foreground">Total Potenciales Clientes</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="text-2xl font-bold">12</div>
@@ -130,7 +130,7 @@ export default function Leads() {
               {/* Leads Table */}
               <Card className="shadow-medium border-border/50">
                 <CardHeader>
-                  <CardTitle>Lista de Leads</CardTitle>
+                  <CardTitle>Lista de Potenciales Clientes</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
