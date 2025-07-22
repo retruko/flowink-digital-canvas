@@ -12,6 +12,8 @@ import { QuickActions } from "@/components/QuickActions";
 import { ManagerDashboard } from "@/components/dashboards/ManagerDashboard";
 import { ArtistDashboard } from "@/components/dashboards/ArtistDashboard";
 import { ReceptionistDashboard } from "@/components/dashboards/ReceptionistDashboard";
+import { OwnerDashboard } from "@/components/dashboards/OwnerDashboard";
+import { FreelancerDashboard } from "@/components/dashboards/FreelancerDashboard";
 
 function DashboardContent() {
   const { user, signOut } = useAuth();
@@ -49,7 +51,7 @@ function DashboardContent() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-              Dashboard Administrador
+              Panel de Administración
             </h1>
             <p className="text-lg text-muted-foreground mt-1">
               Gestión completa de tu estudio de tatuaje
@@ -162,10 +164,16 @@ function DashboardContent() {
     switch (userRole) {
       case 'admin':
         return <AdminDashboard />;
+      case 'owner':
+        return <OwnerDashboard />;
       case 'artist':
         return <ArtistDashboard />;
+      case 'freelancer':
+        return <FreelancerDashboard />;
       case 'receptionist':
         return <ReceptionistDashboard />;
+      case 'manager':
+        return <ManagerDashboard />;
       case 'user':
       default:
         return <ManagerDashboard />;

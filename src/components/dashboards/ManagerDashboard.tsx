@@ -10,7 +10,7 @@ export const ManagerDashboard = () => {
       {/* Header */}
       <div className="space-y-2">
         <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
-          Dashboard Manager
+          Panel
         </h1>
         <p className="text-lg text-muted-foreground">
           Gestión diaria y seguimiento de leads
