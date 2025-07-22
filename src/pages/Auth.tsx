@@ -143,7 +143,7 @@ export default function Auth() {
             <div className="p-2 bg-primary/10 rounded-lg">
               <Palette className="w-8 h-8 text-primary" />
             </div>
-            <h1 className="text-2xl font-bold text-foreground">FlowInk</h1>
+            <h1 className="text-2xl font-bold text-foreground">tatuoria</h1>
           </div>
           <p className="text-muted-foreground">
             Sistema de gestión para estudios de tatuajes

@@ -36,11 +36,11 @@ export function Header() {
 
           <div className="flex items-center space-x-2 sm:space-x-4">
             <div className="flex items-center justify-center h-8 w-8 sm:h-12 sm:w-12 rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 shadow-glow">
-              <img src={flowinkLogo} alt="FlowInk" className="h-4 w-4 sm:h-7 sm:w-7 filter brightness-0 invert" />
+              <img src={flowinkLogo} alt="tatuoria" className="h-4 w-4 sm:h-7 sm:w-7 filter brightness-0 invert" />
             </div>
             <div className="hidden sm:block">
               <h1 className="text-xl sm:text-2xl font-bold font-display bg-gradient-to-r from-primary via-primary to-primary/70 bg-clip-text text-transparent">
-                FlowInk
+                tatuoria
               </h1>
               <p className="text-xs sm:text-sm text-muted-foreground font-medium">Studio Manager</p>
             </div>
