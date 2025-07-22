@@ -10,7 +10,7 @@ import { Sidebar } from "@/components/Sidebar";
 
 export default function Agenda() {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [selectedView, setSelectedView] = useState("week");
+  const [selectedView, setSelectedView] = useState("cabinas");
 
   const appointments = [
     {
@@ -158,6 +158,7 @@ export default function Agenda() {
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
+                        <SelectItem value="cabinas">Vista Cabinas</SelectItem>
                         <SelectItem value="day">Día</SelectItem>
                         <SelectItem value="week">Semana</SelectItem>
                         <SelectItem value="month">Mes</SelectItem>
@@ -237,75 +238,175 @@ export default function Agenda() {
               </Card>
             </div>
 
-            {/* Lista de citas */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Citas de Hoy</CardTitle>
-                <CardDescription>
-                  Agenda completa del {formatDate(selectedDate)}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  {appointments.map((appointment) => (
-                    <div 
-                      key={appointment.id} 
-                      className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="text-center min-w-[80px]">
-                          <div className="font-mono text-lg font-semibold">
-                            {appointment.time}
-                          </div>
-                          <div className="text-xs text-muted-foreground">
-                            {calculateEndTime(appointment.time, appointment.duration)}
-                          </div>
-                        </div>
-                        
-                        <div className="w-px h-12 bg-border" />
-                        
-                        <div className="flex-1">
-                          <div className="flex items-center gap-3 mb-2">
-                            <h3 className="font-semibold">{appointment.client}</h3>
-                            <Badge variant="outline" className="text-xs">
-                              {appointment.artist}
-                            </Badge>
-                          </div>
-                          <p className="text-sm text-muted-foreground mb-1">
-                            {appointment.service}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            📞 {appointment.phone}
-                          </p>
-                          {appointment.notes && (
-                            <p className="text-xs text-muted-foreground mt-1">
-                              💭 {appointment.notes}
-                            </p>
-                          )}
-                        </div>
-                      </div>
+            {/* Vista de Cabinas o Lista de citas */}
+            {selectedView === "cabinas" ? (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Vista por Cabinas</CardTitle>
+                  <CardDescription>
+                    Organización de citas por espacios de trabajo - {formatDate(selectedDate)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <div className="grid grid-cols-5 gap-4 min-w-[800px]">
+                      {/* Header con horarios */}
+                      <div className="text-center font-medium text-sm text-muted-foreground py-2"></div>
+                      <div className="text-center font-bold text-sm py-2 bg-accent/20 rounded-lg">CABINA 1</div>
+                      <div className="text-center font-bold text-sm py-2 bg-accent/20 rounded-lg">CABINA 2</div>
+                      <div className="text-center font-bold text-sm py-2 bg-accent/20 rounded-lg">CABINA 3</div>
+                      <div className="text-center font-bold text-sm py-2 bg-accent/20 rounded-lg">CABINA 4</div>
                       
-                      <div className="flex items-center gap-3">
-                        <div className="text-right text-sm text-muted-foreground">
-                          {appointment.duration} min
+                      {/* Horarios */}
+                      {["11:00", "12:00", "13:00", "14:00", "15:00"].map((hour) => (
+                        <>
+                          <div key={hour} className="text-sm font-medium text-muted-foreground py-4 text-center">
+                            {hour}
+                          </div>
+                          
+                          {/* Cabina 1 */}
+                          <div className="p-2 min-h-[100px] border border-border rounded-lg bg-card">
+                            {hour === "11:00" && (
+                              <div className="bg-blue-500/20 border border-blue-500/30 text-blue-300 p-3 rounded-lg text-xs h-full">
+                                <div className="font-bold text-blue-200">TATUAJE</div>
+                                <div className="text-xs opacity-75 mt-1">11:00 - 14:00</div>
+                                <div className="text-xs font-medium mt-1">Rubén Álvarez</div>
+                                <div className="text-xs mt-1">Brazo completo realismo blanco y negro de su perro.</div>
+                                <Badge className="bg-blue-500 text-white text-xs mt-2">Rastea</Badge>
+                              </div>
+                            )}
+                            {hour === "15:00" && (
+                              <div className="bg-blue-500/10 border border-blue-500/20 text-blue-400 p-2 rounded-lg text-xs">
+                                <div className="text-center font-medium">📩 Recordatorio enviado</div>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Cabina 2 */}
+                          <div className="p-2 min-h-[100px] border border-border rounded-lg bg-card">
+                            {hour === "12:00" && (
+                              <div className="bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 p-3 rounded-lg text-xs h-full">
+                                <div className="text-center text-cyan-200 font-bold mb-2">¡Hay citas solapadas!</div>
+                                <div className="font-bold text-cyan-200">REPASO</div>
+                                <div className="text-xs opacity-75 mt-1">12:00 - 15:00</div>
+                                <div className="text-xs font-medium mt-1">Paloma Gutiérrez</div>
+                                <div className="text-xs mt-1">Repaso de lettering árabe antebrazo derecho.</div>
+                                <Badge className="bg-cyan-500 text-white text-xs mt-2">JoseArt</Badge>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Cabina 3 */}
+                          <div className="p-2 min-h-[100px] border border-border rounded-lg bg-card">
+                            {hour === "11:00" && (
+                              <div className="bg-purple-500/20 border border-purple-500/30 text-purple-300 p-3 rounded-lg text-xs h-full">
+                                <div className="font-bold text-purple-200">PIERCING</div>
+                                <div className="text-xs opacity-75 mt-1">11:00 - 14:00</div>
+                                <div className="text-xs font-medium mt-1">Nerea Fernández</div>
+                                <div className="text-xs mt-1">Lengua + Lóbulo. Tragus.</div>
+                                <Badge className="bg-purple-500 text-white text-xs mt-2">MeryLine</Badge>
+                              </div>
+                            )}
+                            {hour === "15:00" && (
+                              <div className="bg-green-500/10 border border-green-500/20 text-green-400 p-2 rounded-lg text-xs">
+                                <div className="text-center font-medium">🟢 Recordatorio enviado</div>
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Cabina 4 */}
+                          <div className="p-2 min-h-[100px] border border-border rounded-lg bg-card">
+                            {hour === "12:00" && (
+                              <div className="bg-orange-500/20 border border-orange-500/30 text-orange-300 p-3 rounded-lg text-xs h-full">
+                                <div className="font-bold text-orange-200">TATUAJE - 1ª SESIÓN</div>
+                                <div className="text-xs opacity-75 mt-1">12:00 - 15:00</div>
+                                <div className="text-xs font-medium mt-1">Marcos Pascual</div>
+                                <div className="text-xs mt-1">Dragón japonés hombro - todo color.</div>
+                                <Badge className="bg-orange-500 text-white text-xs mt-2">RaulNK</Badge>
+                              </div>
+                            )}
+                            {hour === "16:00" && (
+                              <div className="bg-red-500/20 border border-red-500/30 text-red-300 p-2 rounded-lg text-xs">
+                                <div className="text-center font-medium text-red-200">❌ Cita cancelada</div>
+                              </div>
+                            )}
+                          </div>
+                        </>
+                      ))}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : (
+              <Card>
+                <CardHeader>
+                  <CardTitle>Citas de Hoy</CardTitle>
+                  <CardDescription>
+                    Agenda completa del {formatDate(selectedDate)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    {appointments.map((appointment) => (
+                      <div 
+                        key={appointment.id} 
+                        className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="text-center min-w-[80px]">
+                            <div className="font-mono text-lg font-semibold">
+                              {appointment.time}
+                            </div>
+                            <div className="text-xs text-muted-foreground">
+                              {calculateEndTime(appointment.time, appointment.duration)}
+                            </div>
+                          </div>
+                          
+                          <div className="w-px h-12 bg-border" />
+                          
+                          <div className="flex-1">
+                            <div className="flex items-center gap-3 mb-2">
+                              <h3 className="font-semibold">{appointment.client}</h3>
+                              <Badge variant="outline" className="text-xs">
+                                {appointment.artist}
+                              </Badge>
+                            </div>
+                            <p className="text-sm text-muted-foreground mb-1">
+                              {appointment.service}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              📞 {appointment.phone}
+                            </p>
+                            {appointment.notes && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                💭 {appointment.notes}
+                              </p>
+                            )}
+                          </div>
                         </div>
-                        <Badge variant={getStatusColor(appointment.status)}>
-                          {getStatusLabel(appointment.status)}
-                        </Badge>
-                        <div className="flex gap-2">
-                          <Button variant="outline" size="sm">
-                            Editar
-                          </Button>
-                          <Button variant="outline" size="sm">
-                            Contactar
-                          </Button>
+                        
+                        <div className="flex items-center gap-3">
+                          <div className="text-right text-sm text-muted-foreground">
+                            {appointment.duration} min
+                          </div>
+                          <Badge variant={getStatusColor(appointment.status)}>
+                            {getStatusLabel(appointment.status)}
+                          </Badge>
+                          <div className="flex gap-2">
+                            <Button variant="outline" size="sm">
+                              Editar
+                            </Button>
+                            <Button variant="outline" size="sm">
+                              Contactar
+                            </Button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
 
             {/* Artistas disponibles */}
             <Card>
