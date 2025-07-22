@@ -4,6 +4,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Link } from "react-router-dom";
 import * as React from "react";
 
 export const ManagerDashboard = () => {
@@ -39,6 +40,13 @@ export const ManagerDashboard = () => {
         <p className="text-lg text-muted-foreground">
           Gestión diaria y seguimiento de leads
         </p>
+      </div>
+
+      {/* Quick Access to Revenue */}
+      <div className="flex justify-end">
+        <Button variant="outline" asChild>
+          <Link to="/ingresos">Ver Todos los Ingresos</Link>
+        </Button>
       </div>
 
       {/* Quick Stats */}
@@ -276,7 +284,7 @@ export const ManagerDashboard = () => {
               </SelectContent>
             </Select>
             <Button variant="outline" asChild>
-              <a href="/ingresos">Ver Todos los Ingresos</a>
+              <Link to="/ingresos">Ver Todos los Ingresos</Link>
             </Button>
           </div>
         </div>

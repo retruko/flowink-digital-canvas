@@ -54,7 +54,6 @@ const menuItems = [
     section: "Finanzas",
     items: [
       { icon: DollarSign, label: "Ingresos", href: "/ingresos" },
-      { icon: TrendingUp, label: "Comisiones", href: "/comisiones", badge: "3" },
       { icon: BarChart3, label: "Reportes", href: "/reportes" },
     ]
   },
