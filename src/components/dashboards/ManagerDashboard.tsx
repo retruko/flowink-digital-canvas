@@ -1,10 +1,34 @@
-import { Calendar, Users, Clock, Target, TrendingUp, Phone, Package, AlertCircle, CheckCircle2, XCircle } from "lucide-react";
+import { Calendar, Users, Clock, Target, TrendingUp, Phone, Package, AlertCircle, CheckCircle2, XCircle, DollarSign, CreditCard, Banknote } from "lucide-react";
 import { DashboardCard } from "@/components/DashboardCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import * as React from "react";
 
 export const ManagerDashboard = () => {
+  const [period, setPeriod] = React.useState("today");
+
+  const getPeriodLabel = () => {
+    switch (period) {
+      case "today": return "Hoy";
+      case "7days": return "Últimos 7 días";
+      case "30days": return "Últimos 30 días";
+      case "3months": return "Últimos 3 meses";
+      default: return "Hoy";
+    }
+  };
+
+  const getRevenueData = () => {
+    switch (period) {
+      case "today": return { value: "€890", description: "Meta: €1,200", trend: 12 };
+      case "7days": return { value: "€6,540", description: "Meta: €8,400", trend: 8 };
+      case "30days": return { value: "€28,450", description: "Meta: €36,000", trend: -3 };
+      case "3months": return { value: "€94,230", description: "Meta: €108,000", trend: 15 };
+      default: return { value: "€890", description: "Meta: €1,200", trend: 12 };
+    }
+  };
+
   return (
     <div className="space-y-8">
       {/* Header */}
@@ -47,6 +71,58 @@ export const ManagerDashboard = () => {
           icon={Target}
           trend={{ value: 8, label: "vs semana pasada", positive: true }}
         />
+      </div>
+
+      {/* Revenue Section */}
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold">Ingresos</h2>
+            <p className="text-sm text-muted-foreground">Resumen de ventas y facturación</p>
+          </div>
+          <Select value={period} onValueChange={setPeriod}>
+            <SelectTrigger className="w-48">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="today">Hoy</SelectItem>
+              <SelectItem value="7days">Últimos 7 días</SelectItem>
+              <SelectItem value="30days">Últimos 30 días</SelectItem>
+              <SelectItem value="3months">Últimos 3 meses</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <DashboardCard
+            title={`Ingresos ${getPeriodLabel()}`}
+            value={getRevenueData().value}
+            description={getRevenueData().description}
+            icon={DollarSign}
+            trend={{ value: getRevenueData().trend, label: "vs período anterior", positive: getRevenueData().trend > 0 }}
+          />
+          <DashboardCard
+            title="Servicios Vendidos"
+            value="24"
+            description="15 tatuajes, 9 consultas"
+            icon={Target}
+            trend={{ value: 18, label: "vs período anterior", positive: true }}
+          />
+          <DashboardCard
+            title="Depósitos Cobrados"
+            value="€340"
+            description="8 reservas confirmadas"
+            icon={CreditCard}
+            trend={{ value: 22, label: "vs período anterior", positive: true }}
+          />
+          <DashboardCard
+            title="Ticket Promedio"
+            value="€156"
+            description="Por servicio completado"
+            icon={Banknote}
+            trend={{ value: 5, label: "vs período anterior", positive: true }}
+          />
+        </div>
       </div>
 
       <div className="grid gap-8 lg:grid-cols-3">
