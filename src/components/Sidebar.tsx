@@ -25,6 +25,7 @@ const menuItems = [
     section: "Principal",
     items: [
       { icon: LayoutDashboard, label: "Panel", href: "/", active: true },
+      { icon: DollarSign, label: "Finanzas", href: "/finanzas" },
       { icon: Calendar, label: "Agenda", href: "/agenda", badge: "8" },
     ]
   },
@@ -48,12 +49,6 @@ const menuItems = [
       },
       { icon: UserCog, label: "Managers", href: "/managers", count: "2" },
       { icon: Palette, label: "Tatuadores", href: "/tatuadores", count: "5" },
-    ]
-  },
-  {
-    section: "Finanzas",
-    items: [
-      { icon: DollarSign, label: "Finanzas", href: "/finanzas" },
     ]
   },
   {
