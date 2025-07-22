@@ -24,7 +24,7 @@ const menuItems = [
   {
     section: "Principal",
     items: [
-      { icon: LayoutDashboard, label: "Dashboard", href: "/", active: true },
+      { icon: LayoutDashboard, label: "Panel", href: "/", active: true },
       { icon: Calendar, label: "Agenda", href: "/agenda", badge: "8" },
     ]
   },
