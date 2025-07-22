@@ -14,6 +14,7 @@ import Inventory from "./pages/Inventory";
 import Invoices from "./pages/Invoices";
 import Settings from "./pages/Settings";
 import Leads from "./pages/Leads";
+import Revenue from "./pages/Revenue";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/tatuadores" element={<Artists />} />
             <Route path="/inventario" element={<Inventory />} />
             <Route path="/invoices" element={<Invoices />} />
+            <Route path="/ingresos" element={<Revenue />} />
             <Route path="/configuracion" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

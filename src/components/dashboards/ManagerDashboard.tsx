@@ -263,17 +263,22 @@ export const ManagerDashboard = () => {
             <h2 className="text-2xl font-bold">Ingresos</h2>
             <p className="text-sm text-muted-foreground">Resumen de ventas y facturación</p>
           </div>
-          <Select value={period} onValueChange={setPeriod}>
-            <SelectTrigger className="w-48">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="today">Hoy</SelectItem>
-              <SelectItem value="7days">Últimos 7 días</SelectItem>
-              <SelectItem value="30days">Últimos 30 días</SelectItem>
-              <SelectItem value="3months">Últimos 3 meses</SelectItem>
-            </SelectContent>
-          </Select>
+          <div className="flex items-center gap-3">
+            <Select value={period} onValueChange={setPeriod}>
+              <SelectTrigger className="w-48">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="today">Hoy</SelectItem>
+                <SelectItem value="7days">Últimos 7 días</SelectItem>
+                <SelectItem value="30days">Últimos 30 días</SelectItem>
+                <SelectItem value="3months">Últimos 3 meses</SelectItem>
+              </SelectContent>
+            </Select>
+            <Button variant="outline" asChild>
+              <a href="/ingresos">Ver Todos los Ingresos</a>
+            </Button>
+          </div>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
