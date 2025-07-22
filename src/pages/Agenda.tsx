@@ -6,8 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
 import { Header } from "@/components/Header";
-import { Sidebar } from "@/components/Sidebar";
-import { MobileSidebar } from "@/components/MobileSidebar";
 
 export default function Agenda() {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -109,11 +107,7 @@ export default function Agenda() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <div className="flex">
-        <Sidebar />
-        <MobileSidebar />
-        
-        <main className="flex-1 p-6">
+      <main className="flex-1 p-6">
           <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
@@ -346,8 +340,7 @@ export default function Agenda() {
               </CardContent>
             </Card>
           </div>
-        </main>
-      </div>
+      </main>
     </div>
   );
 }
