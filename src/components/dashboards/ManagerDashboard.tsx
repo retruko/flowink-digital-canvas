@@ -96,11 +96,11 @@ export const ManagerDashboard = () => {
             <CardContent>
               <div className="space-y-4">
                 {[
-                  { time: "09:00", client: "María García", artist: "Carlos", status: "confirmed", service: "Tatuaje pequeño" },
-                  { time: "10:30", client: "Juan Pérez", artist: "Sofia", status: "pending", service: "Consulta" },
-                  { time: "12:00", client: "Ana López", artist: "Miguel", status: "in_progress", service: "Tatuaje mediano" },
-                  { time: "14:00", client: "Pedro Ruiz", artist: "Carlos", status: "confirmed", service: "Retoque" },
-                  { time: "16:30", client: "Laura Martín", artist: "Sofia", status: "pending", service: "Tatuaje grande" },
+                  { time: "09:00", client: "María García", artist: "Carlos", status: "finalizada", service: "Tatuaje pequeño" },
+                  { time: "10:30", client: "Juan Pérez", artist: "Sofia", status: "pendiente", service: "Consulta" },
+                  { time: "12:00", client: "Ana López", artist: "Miguel", status: "en_curso", service: "Tatuaje mediano" },
+                  { time: "14:00", client: "Pedro Ruiz", artist: "Carlos", status: "pendiente", service: "Retoque" },
+                  { time: "16:30", client: "Laura Martín", artist: "Sofia", status: "pendiente", service: "Tatuaje grande" },
                 ].map((appointment, index) => (
                   <div key={index} className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors">
                     <div className="flex items-center gap-4">
@@ -118,17 +118,17 @@ export const ManagerDashboard = () => {
                       </span>
                       <Badge
                         variant={
-                          appointment.status === "confirmed" ? "default" :
-                          appointment.status === "in_progress" ? "secondary" :
+                          appointment.status === "finalizada" ? "default" :
+                          appointment.status === "en_curso" ? "secondary" :
                           "outline"
                         }
                         className="flex items-center gap-1"
                       >
-                        {appointment.status === "confirmed" && <CheckCircle2 className="w-3 h-3" />}
-                        {appointment.status === "in_progress" && <Clock className="w-3 h-3" />}
-                        {appointment.status === "pending" && <AlertCircle className="w-3 h-3" />}
-                        {appointment.status === "confirmed" ? "Confirmada" :
-                         appointment.status === "in_progress" ? "En curso" :
+                        {appointment.status === "finalizada" && <CheckCircle2 className="w-3 h-3" />}
+                        {appointment.status === "en_curso" && <Clock className="w-3 h-3" />}
+                        {appointment.status === "pendiente" && <AlertCircle className="w-3 h-3" />}
+                        {appointment.status === "finalizada" ? "Finalizada" :
+                         appointment.status === "en_curso" ? "En curso" :
                          "Pendiente"}
                       </Badge>
                     </div>
