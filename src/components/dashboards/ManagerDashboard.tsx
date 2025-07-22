@@ -118,9 +118,9 @@ export const ManagerDashboard = () => {
         </div>
       </div>
 
-      <div className="grid gap-8 lg:grid-cols-3">
+      <div className="grid gap-8 lg:grid-cols-2">
         {/* Agenda del Día */}
-        <div className="lg:col-span-2">
+        <div>
           <Card>
             <CardHeader>
               <div className="flex items-center justify-between">
@@ -184,49 +184,8 @@ export const ManagerDashboard = () => {
           </Card>
         </div>
 
-        {/* Leads y Acciones */}
-        <div className="space-y-6">
-          {/* Leads Pendientes */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Phone className="w-5 h-5 text-primary" />
-                Leads Pendientes
-              </CardTitle>
-              <CardDescription>
-                Requieren seguimiento
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {[
-                  { name: "Roberto Silva", time: "2h", type: "Consulta web", priority: "high" },
-                  { name: "Carmen Vega", time: "4h", type: "WhatsApp", priority: "medium" },
-                  { name: "Diego Torres", time: "1d", type: "Instagram", priority: "low" },
-                  { name: "Isabel Ruiz", time: "2d", type: "Teléfono", priority: "medium" },
-                ].map((lead, index) => (
-                  <div key={index} className="flex items-center justify-between p-3 border rounded-lg">
-                    <div>
-                      <p className="font-medium text-sm">{lead.name}</p>
-                      <p className="text-xs text-muted-foreground">{lead.type} • hace {lead.time}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className={`w-2 h-2 rounded-full ${
-                        lead.priority === "high" ? "bg-red-500" :
-                        lead.priority === "medium" ? "bg-yellow-500" :
-                        "bg-green-500"
-                      }`} />
-                      <Button variant="ghost" size="sm">
-                        Contactar
-                      </Button>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Estado de Artistas */}
+        {/* Estado de Artistas */}
+        <div>
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -268,18 +227,54 @@ export const ManagerDashboard = () => {
               </div>
             </CardContent>
           </Card>
-
-          {/* Métricas Rápidas */}
-          <div className="grid gap-4">
-            <DashboardCard
-              title="Ingresos Hoy"
-              value="€890"
-              description="Meta: €1,200"
-              icon={TrendingUp}
-              trend={{ value: 12, label: "vs ayer", positive: true }}
-            />
-          </div>
         </div>
+      </div>
+
+      {/* Potenciales Clientes */}
+      <div>
+        <Card>
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Phone className="w-5 h-5 text-primary" />
+              Potenciales Clientes
+            </CardTitle>
+            <CardDescription>
+              Clientes que requieren seguimiento y contacto
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              {[
+                { name: "Roberto Silva", time: "2h", type: "Consulta web", priority: "high", interest: "Tatuaje brazo completo" },
+                { name: "Carmen Vega", time: "4h", type: "WhatsApp", priority: "medium", interest: "Tatuaje pequeño muñeca" },
+                { name: "Diego Torres", time: "1d", type: "Instagram", priority: "low", interest: "Consulta diseño" },
+                { name: "Isabel Ruiz", time: "2d", type: "Teléfono", priority: "medium", interest: "Retoque tatuaje" },
+                { name: "Miguel Santos", time: "3h", type: "Email", priority: "high", interest: "Tatuaje espalda" },
+                { name: "Ana Fernández", time: "1d", type: "WhatsApp", priority: "medium", interest: "Piercing" },
+                { name: "Carlos López", time: "5h", type: "Instagram", priority: "low", interest: "Consulta precios" },
+                { name: "Laura García", time: "2d", type: "Teléfono", priority: "high", interest: "Tatuaje realista" },
+              ].map((lead, index) => (
+                <div key={index} className="p-4 border rounded-lg hover:bg-accent/50 transition-colors">
+                  <div className="flex items-start justify-between mb-3">
+                    <div>
+                      <p className="font-medium">{lead.name}</p>
+                      <p className="text-sm text-muted-foreground">{lead.type} • hace {lead.time}</p>
+                    </div>
+                    <div className={`w-2 h-2 rounded-full ${
+                      lead.priority === "high" ? "bg-red-500" :
+                      lead.priority === "medium" ? "bg-yellow-500" :
+                      "bg-green-500"
+                    }`} />
+                  </div>
+                  <p className="text-sm text-muted-foreground mb-3">{lead.interest}</p>
+                  <Button variant="outline" size="sm" className="w-full">
+                    Contactar
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
