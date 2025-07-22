@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { DashboardCard } from "@/components/DashboardCard";
 import { Header } from "@/components/Header";
+import { Sidebar } from "@/components/Sidebar";
 
 export default function Finanzas() {
   const [period, setPeriod] = useState("30days");
@@ -27,7 +28,9 @@ export default function Finanzas() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="flex-1 p-6">
+      <div className="flex">
+        <Sidebar />
+        <main className="flex-1 p-6">
           <div className="space-y-6">
             {/* Header */}
             <div>
@@ -374,7 +377,8 @@ export default function Finanzas() {
               </TabsContent>
             </Tabs>
           </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
