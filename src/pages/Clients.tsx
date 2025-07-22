@@ -87,8 +87,6 @@ const Clients = () => {
       <Header />
       <div className="flex">
         <Sidebar />
-        <MobileSidebar />
-        
         <main className="flex-1 p-6">
           <div className="space-y-6">
             {/* Header */}
