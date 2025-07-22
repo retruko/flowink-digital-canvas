@@ -53,8 +53,7 @@ const menuItems = [
   {
     section: "Finanzas",
     items: [
-      { icon: DollarSign, label: "Ingresos", href: "/ingresos" },
-      { icon: BarChart3, label: "Reportes", href: "/reportes" },
+      { icon: DollarSign, label: "Finanzas", href: "/finanzas" },
     ]
   },
   {
