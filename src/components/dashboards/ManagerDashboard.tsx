@@ -1,4 +1,4 @@
-import { Calendar, Users, Clock, Target, TrendingUp, Phone, UserCheck, AlertCircle, CheckCircle2, XCircle } from "lucide-react";
+import { Calendar, Users, Clock, Target, TrendingUp, Phone, Package, AlertCircle, CheckCircle2, XCircle } from "lucide-react";
 import { DashboardCard } from "@/components/DashboardCard";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -27,18 +27,18 @@ export const ManagerDashboard = () => {
           trend={{ value: 20, label: "vs ayer", positive: true }}
         />
         <DashboardCard
-          title="Leads Activos"
+          title="Clientes Potenciales"
           value="8"
           description="5 sin contactar"
           icon={Phone}
           trend={{ value: 15, label: "esta semana", positive: true }}
         />
         <DashboardCard
-          title="Check-ins Hoy"
-          value="9"
-          description="75% puntualidad"
-          icon={UserCheck}
-          trend={{ value: 5, label: "vs ayer", positive: true }}
+          title="Stock Bajo"
+          value="3"
+          description="Productos agotándose"
+          icon={Package}
+          trend={{ value: 2, label: "esta semana", positive: false }}
         />
         <DashboardCard
           title="Ocupación"
