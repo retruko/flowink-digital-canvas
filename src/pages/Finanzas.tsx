@@ -178,29 +178,12 @@ export default function Finanzas() {
             </div>
 
             {/* Pestañas de contenido */}
-            <Tabs defaultValue="ingresos" className="space-y-6">
-              <div className="border-b">
-                <TabsList className="h-12 w-auto bg-transparent p-0">
-                  <TabsTrigger 
-                    value="ingresos" 
-                    className="h-12 px-6 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none"
-                  >
-                    💰 Ingresos
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="gastos" 
-                    className="h-12 px-6 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none"
-                  >
-                    📊 Gastos
-                  </TabsTrigger>
-                  <TabsTrigger 
-                    value="reportes" 
-                    className="h-12 px-6 text-sm font-medium border-b-2 border-transparent data-[state=active]:border-primary data-[state=active]:bg-transparent rounded-none"
-                  >
-                    📈 Reportes
-                  </TabsTrigger>
-                </TabsList>
-              </div>
+            <Tabs defaultValue="ingresos">
+              <TabsList className="grid w-full grid-cols-3 mb-6">
+                <TabsTrigger value="ingresos">💰 Ingresos</TabsTrigger>
+                <TabsTrigger value="gastos">📊 Gastos</TabsTrigger>
+                <TabsTrigger value="reportes">📈 Reportes</TabsTrigger>
+              </TabsList>
 
               {/* Pestaña de Ingresos */}
               <TabsContent value="ingresos" className="space-y-6">
