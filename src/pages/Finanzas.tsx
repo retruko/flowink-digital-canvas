@@ -122,8 +122,12 @@ export default function Finanzas() {
             </div>
 
             {/* Filtros globales */}
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-6 bg-card rounded-lg border">
+              <div>
+                <h3 className="text-lg font-semibold">Período de análisis</h3>
+                <p className="text-sm text-muted-foreground">Selecciona el rango de fechas para visualizar</p>
+              </div>
+              <div className="flex items-center gap-3">
                 <Select value={period} onValueChange={setPeriod}>
                   <SelectTrigger className="w-48">
                     <SelectValue />
@@ -135,12 +139,11 @@ export default function Finanzas() {
                     <SelectItem value="3months">Últimos 3 meses</SelectItem>
                   </SelectContent>
                 </Select>
+                <Button variant="outline">
+                  <Download className="w-4 h-4 mr-2" />
+                  Exportar
+                </Button>
               </div>
-
-              <Button variant="outline">
-                <Download className="w-4 h-4 mr-2" />
-                Exportar Reporte
-              </Button>
             </div>
 
             {/* Métricas principales */}
@@ -176,15 +179,18 @@ export default function Finanzas() {
             </div>
 
             {/* Pestañas de contenido */}
-            <Tabs defaultValue="ingresos" className="space-y-6">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="ingresos">Ingresos</TabsTrigger>
-                <TabsTrigger value="gastos">Gastos</TabsTrigger>
-                <TabsTrigger value="reportes">Reportes</TabsTrigger>
-              </TabsList>
+            <div className="bg-card rounded-lg border">
+              <Tabs defaultValue="ingresos" className="space-y-0">
+                <div className="border-b px-6 py-4">
+                  <TabsList className="grid w-full max-w-md grid-cols-3 bg-muted/30">
+                    <TabsTrigger value="ingresos" className="text-sm font-medium">💰 Ingresos</TabsTrigger>
+                    <TabsTrigger value="gastos" className="text-sm font-medium">📊 Gastos</TabsTrigger>
+                    <TabsTrigger value="reportes" className="text-sm font-medium">📈 Reportes</TabsTrigger>
+                  </TabsList>
+                </div>
 
               {/* Pestaña de Ingresos */}
-              <TabsContent value="ingresos" className="space-y-6">
+              <TabsContent value="ingresos" className="p-6 space-y-6">
                 <div className="grid gap-6 md:grid-cols-3">
                   <DashboardCard
                     title="Por Servicios"
@@ -252,7 +258,7 @@ export default function Finanzas() {
               </TabsContent>
 
               {/* Pestaña de Gastos */}
-              <TabsContent value="gastos" className="space-y-6">
+              <TabsContent value="gastos" className="p-6 space-y-6">
                 <div className="flex justify-end">
                   <Button>
                     <Plus className="w-4 h-4 mr-2" />
@@ -261,9 +267,9 @@ export default function Finanzas() {
                 </div>
 
                 <div className="grid gap-6 md:grid-cols-3">
-                  <Card>
+                  <Card className="border-l-4 border-l-orange-500">
                     <CardHeader>
-                      <CardTitle>Por Categoría</CardTitle>
+                      <CardTitle className="text-orange-700">Por Categoría</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -285,9 +291,9 @@ export default function Finanzas() {
                     </CardContent>
                   </Card>
 
-                  <Card>
+                  <Card className="border-l-4 border-l-blue-500">
                     <CardHeader>
-                      <CardTitle>Este Mes</CardTitle>
+                      <CardTitle className="text-blue-700">Este Mes</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -309,9 +315,9 @@ export default function Finanzas() {
                     </CardContent>
                   </Card>
 
-                  <Card>
+                  <Card className="border-l-4 border-l-red-500">
                     <CardHeader>
-                      <CardTitle>Pendientes</CardTitle>
+                      <CardTitle className="text-red-700">Pendientes</CardTitle>
                     </CardHeader>
                     <CardContent>
                       <div className="space-y-4">
@@ -331,15 +337,23 @@ export default function Finanzas() {
 
                 <Card>
                   <CardHeader>
-                    <CardTitle>Registro de Gastos</CardTitle>
-                    <CardDescription>Historial de gastos y facturas</CardDescription>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <CardTitle>📋 Registro de Gastos</CardTitle>
+                        <CardDescription>Historial detallado de gastos y facturas</CardDescription>
+                      </div>
+                      <Button variant="outline" size="sm">
+                        <Filter className="w-4 h-4 mr-2" />
+                        Filtrar
+                      </Button>
+                    </div>
                   </CardHeader>
                   <CardContent>
-                    <div className="space-y-4">
+                    <div className="space-y-3">
                       {recentExpenses.map((expense) => (
-                        <div key={expense.id} className="flex items-center justify-between p-4 border rounded-lg hover:bg-accent/50 transition-colors">
+                        <div key={expense.id} className="flex items-center justify-between p-4 bg-gradient-to-r from-background to-muted/20 rounded-lg border hover:bg-accent/50 transition-colors">
                           <div className="flex items-center gap-4">
-                            <div className="text-sm text-muted-foreground font-mono">
+                            <div className="text-sm text-muted-foreground font-mono bg-muted/50 px-2 py-1 rounded">
                               {expense.date}
                             </div>
                             <div>
@@ -350,7 +364,7 @@ export default function Finanzas() {
                           <div className="flex items-center gap-4">
                             <div className="text-right">
                               <p className="font-medium text-lg text-red-600">{expense.amount}</p>
-                              <p className="text-sm text-muted-foreground">{expense.category}</p>
+                              <p className="text-xs text-muted-foreground bg-muted/50 px-2 py-1 rounded">{expense.category}</p>
                             </div>
                             <Badge variant={getStatusColor(expense.status)}>
                               {getStatusLabel(expense.status)}
@@ -364,7 +378,7 @@ export default function Finanzas() {
               </TabsContent>
 
               {/* Pestaña de Reportes */}
-              <TabsContent value="reportes" className="space-y-6">
+              <TabsContent value="reportes" className="p-6 space-y-6">
                 <div className="grid gap-6 md:grid-cols-2">
                   <Card>
                     <CardHeader>
@@ -462,6 +476,7 @@ export default function Finanzas() {
                 </Card>
               </TabsContent>
             </Tabs>
+            </div>
           </div>
         </main>
       </div>
