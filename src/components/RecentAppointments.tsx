@@ -1,3 +1,4 @@
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -66,10 +67,10 @@ const statusLabels = {
 
 export function RecentAppointments() {
   return (
-    <Card className="rounded-3xl border-border/30 bg-gradient-to-br from-card via-card to-card/95 shadow-medium backdrop-blur-sm">
+    <Card className="rounded-3xl border-2 border-border bg-gradient-to-br from-card via-card to-card/95 shadow-medium backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="flex items-center gap-3 text-xl font-bold font-display">
-          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center">
+          <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center border border-primary/20">
             <Clock className="h-5 w-5 text-primary" />
           </div>
           Citas de Hoy
@@ -80,10 +81,10 @@ export function RecentAppointments() {
           {appointments.map((appointment) => (
             <div
               key={appointment.id}
-              className="flex items-center space-x-4 p-4 rounded-2xl border border-border/30 hover:border-border/50 bg-gradient-to-r from-card to-card/80 hover:from-accent/20 hover:to-accent/10 transition-all duration-300 group hover:shadow-medium"
+              className="flex items-center space-x-4 p-4 rounded-2xl border-2 border-border hover:border-foreground/20 bg-gradient-to-r from-card to-card/80 hover:from-accent/20 hover:to-accent/10 transition-all duration-300 group hover:shadow-medium"
             >
-              <Avatar className="h-12 w-12 ring-2 ring-background shadow-soft">
-                <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/10 text-primary font-bold">
+              <Avatar className="h-12 w-12 ring-2 ring-border shadow-soft">
+                <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/10 text-primary font-bold border border-primary/20">
                   {appointment.clientName.split(' ').map(n => n[0]).join('')}
                 </AvatarFallback>
               </Avatar>
@@ -92,18 +93,18 @@ export function RecentAppointments() {
                 <div className="flex items-center justify-between">
                   <p className="text-sm font-bold group-hover:text-foreground transition-colors">{appointment.clientName}</p>
                   <Badge 
-                    className={`${statusColors[appointment.status]} rounded-2xl px-3 py-1 font-semibold shadow-soft`}
+                    className={`${statusColors[appointment.status]} rounded-2xl px-3 py-1 font-semibold shadow-soft border border-current/20`}
                     variant="secondary"
                   >
                     {statusLabels[appointment.status]}
                   </Badge>
                 </div>
                 <div className="flex items-center gap-4 text-xs text-muted-foreground font-medium">
-                  <span className="bg-muted/50 px-2 py-1 rounded-xl">{appointment.service}</span>
-                  <span className="bg-muted/50 px-2 py-1 rounded-xl">{appointment.time}</span>
-                  <span className="bg-muted/50 px-2 py-1 rounded-xl">{appointment.artist}</span>
+                  <span className="bg-muted/50 px-2 py-1 rounded-xl border border-border/50">{appointment.service}</span>
+                  <span className="bg-muted/50 px-2 py-1 rounded-xl border border-border/50">{appointment.time}</span>
+                  <span className="bg-muted/50 px-2 py-1 rounded-xl border border-border/50">{appointment.artist}</span>
                   {appointment.location && (
-                    <span className="flex items-center gap-1 bg-muted/50 px-2 py-1 rounded-xl">
+                    <span className="flex items-center gap-1 bg-muted/50 px-2 py-1 rounded-xl border border-border/50">
                       <MapPin className="h-3 w-3" />
                       {appointment.location}
                     </span>

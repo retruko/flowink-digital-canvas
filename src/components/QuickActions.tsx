@@ -1,3 +1,4 @@
+
 import { Plus, UserPlus, Calendar, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,7 +32,7 @@ const quickActions = [
 
 export function QuickActions() {
   return (
-    <Card className="rounded-3xl border-border/30 bg-gradient-to-br from-card via-card to-card/95 shadow-medium backdrop-blur-sm">
+    <Card className="rounded-3xl border-2 border-border bg-gradient-to-br from-card via-card to-card/95 shadow-medium backdrop-blur-sm">
       <CardHeader>
         <CardTitle className="text-xl font-bold font-display">Acciones Rápidas</CardTitle>
       </CardHeader>
@@ -43,10 +44,10 @@ export function QuickActions() {
               <Button
                 key={action.label}
                 variant={action.variant}
-                className={`h-auto flex-col gap-4 p-6 rounded-2xl transition-all duration-300 hover:shadow-medium hover:-translate-y-0.5 ${
+                className={`h-auto flex-col gap-4 p-6 rounded-2xl border-2 transition-all duration-300 hover:shadow-medium hover:-translate-y-0.5 ${
                   action.variant === "gradient" 
-                    ? "bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground shadow-glow hover:shadow-glow" 
-                    : "bg-gradient-to-br from-muted/30 to-muted/10 hover:from-accent/30 hover:to-accent/20 border-border/50"
+                    ? "bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground shadow-glow hover:shadow-glow border-primary/30" 
+                    : "bg-gradient-to-br from-muted/30 to-muted/10 hover:from-accent/30 hover:to-accent/20 border-border"
                 }`}
               >
                 <div className={`h-12 w-12 rounded-2xl flex items-center justify-center ${
