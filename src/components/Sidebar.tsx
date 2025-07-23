@@ -62,11 +62,11 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:flex lg:w-24 border-r border-border bg-card h-full flex-col fixed left-0 top-0 z-40">
+    <aside className="hidden lg:flex lg:w-20 border-r border-border bg-card h-full flex-col fixed left-0 top-0 z-40">
       <div className="flex h-full flex-col">
         {/* Logo/Brand */}
-        <div className="flex items-center justify-center h-12 border-b border-border">
-          <div className="w-6 h-6 bg-primary rounded-lg flex items-center justify-center">
+        <div className="flex items-center justify-center h-10 border-b border-border">
+          <div className="w-5 h-5 bg-primary rounded-md flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-xs">F</span>
           </div>
         </div>
@@ -82,16 +82,16 @@ export function Sidebar() {
                     <Link 
                       key={item.href}
                       to={item.href}
-                      className={`relative flex flex-col items-center justify-center py-3 px-1 mx-1 rounded-lg transition-all duration-200 ${
+                      className={`relative flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg transition-all duration-200 ${
                         isActive 
                           ? "bg-primary text-primary-foreground shadow-sm" 
                           : "text-muted-foreground hover:text-foreground hover:bg-accent"
                       }`}
                     >
                       <div className="relative">
-                        <Icon className="h-6 w-6 mb-1" />
+                        <Icon className="h-5 w-5 mb-1" />
                         {item.badge && (
-                          <span className={`absolute -top-1 right-0 h-5 w-5 rounded-full text-xs font-medium flex items-center justify-center ${
+                          <span className={`absolute -top-1 right-0 h-4 w-4 rounded-full text-xs font-medium flex items-center justify-center ${
                             item.badge === "!" 
                               ? "bg-destructive text-destructive-foreground" 
                               : "bg-primary text-primary-foreground"
@@ -101,11 +101,11 @@ export function Sidebar() {
                         )}
                         {item.count && (
                           <span className="absolute -top-1 right-0 h-4 w-4 bg-primary text-primary-foreground text-xs font-medium rounded-full flex items-center justify-center">
-                            {item.count.length > 2 ? '99+' : item.count}
+                            {item.count.length > 2 ? '9+' : item.count}
                           </span>
                         )}
                       </div>
-                      <span className="text-xs font-medium text-center leading-tight">
+                      <span className="text-xs font-medium text-center leading-tight px-0.5">
                         {item.label}
                       </span>
                     </Link>
@@ -125,7 +125,7 @@ export function Sidebar() {
                   : "text-muted-foreground hover:text-foreground hover:bg-accent"
               }`}
             >
-              <Settings className="h-6 w-6 mb-1" />
+              <Settings className="h-5 w-5 mb-1" />
               <span className="text-xs font-medium">General</span>
             </Link>
             
@@ -133,7 +133,7 @@ export function Sidebar() {
               className="flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
               title="Ayuda y soporte"
             >
-              <Shield className="h-6 w-6 mb-1" />
+              <Shield className="h-5 w-5 mb-1" />
               <span className="text-xs font-medium">Ayuda</span>
             </button>
           </div>
