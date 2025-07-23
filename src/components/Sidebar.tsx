@@ -68,6 +68,14 @@ export function Sidebar() {
           <div className="space-y-6">
             {menuItems.map((section, sectionIndex) => (
               <div key={section.section} className="space-y-2">
+                {/* Category Label */}
+                <div className="px-2 mb-3">
+                  <span className="text-xs font-bold text-muted-foreground/70 uppercase tracking-wide block text-center">
+                    {section.section}
+                  </span>
+                  <div className="w-8 h-px bg-gradient-to-r from-transparent via-border to-transparent mx-auto mt-1"></div>
+                </div>
+                
                 {section.items.map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.href;
@@ -109,25 +117,25 @@ export function Sidebar() {
           </div>
 
           {/* Bottom Section */}
-          <div className="border-t border-border pt-2 space-y-1">
+          <div className="border-t border-border pt-3 space-y-2">
             <Link 
               to="/configuracion"
-              className={`flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg transition-all duration-200 ${
+              className={`flex flex-col items-center justify-center py-1.5 px-0.5 mx-1 rounded-md transition-all duration-200 ${
                 location.pathname === "/configuracion"
                   ? "bg-primary text-primary-foreground shadow-sm" 
                   : "text-muted-foreground hover:text-foreground hover:bg-accent"
               }`}
             >
               <Settings className="h-4 w-4 mb-0.5" />
-              <span className="text-xs font-medium">General</span>
+              <span className="text-xs font-medium text-center">General</span>
             </Link>
             
             <button 
-              className="flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
+              className="flex flex-col items-center justify-center py-1.5 px-0.5 mx-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
               title="Ayuda y soporte"
             >
               <Shield className="h-4 w-4 mb-0.5" />
-              <span className="text-xs font-medium">Ayuda</span>
+              <span className="text-xs font-medium text-center">Ayuda</span>
             </button>
           </div>
         </div>
