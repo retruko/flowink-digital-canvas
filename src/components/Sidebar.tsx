@@ -49,7 +49,7 @@ const menuItems = [
       },
       { icon: UserCog, label: "Managers", href: "/managers", count: "2" },
       { icon: Palette, label: "Artistas", href: "/artistas", count: "5" },
-      { icon: Mail, label: "Comunicaciones", href: "/comunicaciones" },
+      { icon: Mail, label: "Emails", href: "/comunicaciones" },
     ]
   }
 ];

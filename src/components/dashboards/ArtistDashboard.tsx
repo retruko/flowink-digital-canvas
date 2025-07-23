@@ -42,9 +42,9 @@ export const ArtistDashboard = () => {
           trend={{ value: 12, label: "vs mes pasado", positive: true }}
         />
         <DashboardCard
-          title="Rating Promedio"
-          value="4.9"
-          description="De 47 reseñas"
+          title="Satisfacción"
+          value="98%"
+          description="Clientes satisfechos"
           icon={Star}
           trend={{ value: 3, label: "este mes", positive: true }}
         />

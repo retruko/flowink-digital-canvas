@@ -42,9 +42,9 @@ export const FreelancerDashboard = () => {
           trend={{ value: 25, label: "vs mes pasado", positive: true }}
         />
         <DashboardCard
-          title="Rating Promedio"
-          value="4.8"
-          description="De 31 reseñas"
+          title="Satisfacción"
+          value="95%"
+          description="Clientes satisfechos"
           icon={Star}
           trend={{ value: 5, label: "este mes", positive: true }}
         />

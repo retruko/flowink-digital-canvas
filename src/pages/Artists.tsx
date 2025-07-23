@@ -41,8 +41,7 @@ interface Artist {
   startDate: string;
   permissions: string[];
   performance: {
-    rating: number;
-    reviewsCount: number;
+    satisfaction: number;
     completedTattoos: number;
     monthlyRevenue: number;
   };
@@ -65,8 +64,7 @@ const Artists = () => {
       startDate: "2022-03-15",
       permissions: ["Ver mis citas", "Gestionar horario", "Ver inventario"],
       performance: {
-        rating: 4.9,
-        reviewsCount: 127,
+        satisfaction: 98,
         completedTattoos: 89,
         monthlyRevenue: 4200
       },
@@ -86,8 +84,7 @@ const Artists = () => {
       startDate: "2021-01-20",
       permissions: ["Ver mis citas", "Gestionar horario", "Ver inventario", "Mentor junior"],
       performance: {
-        rating: 4.7,
-        reviewsCount: 203,
+        satisfaction: 95,
         completedTattoos: 156,
         monthlyRevenue: 3800
       },
@@ -107,8 +104,7 @@ const Artists = () => {
       startDate: "2023-06-10",
       permissions: ["Ver mis citas", "Gestionar horario"],
       performance: {
-        rating: 4.8,
-        reviewsCount: 84,
+        satisfaction: 97,
         completedTattoos: 67,
         monthlyRevenue: 2950
       },
@@ -128,8 +124,7 @@ const Artists = () => {
       startDate: "2019-09-05",
       permissions: ["Ver mis citas", "Gestionar horario", "Ver inventario", "Mentor junior", "Diseño personalizado"],
       performance: {
-        rating: 5.0,
-        reviewsCount: 98,
+        satisfaction: 99,
         completedTattoos: 45,
         monthlyRevenue: 5200
       },
@@ -149,8 +144,7 @@ const Artists = () => {
       startDate: "2022-11-15",
       permissions: ["Ver mis citas", "Gestionar horario", "Ver inventario"],
       performance: {
-        rating: 4.6,
-        reviewsCount: 76,
+        satisfaction: 92,
         completedTattoos: 54,
         monthlyRevenue: 3200
       },
@@ -196,7 +190,7 @@ const Artists = () => {
   });
 
   const totalRevenue = artists.reduce((sum, artist) => sum + artist.performance.monthlyRevenue, 0);
-  const averageRating = artists.reduce((sum, artist) => sum + artist.performance.rating, 0) / artists.length;
+  const averageSatisfaction = artists.reduce((sum, artist) => sum + artist.performance.satisfaction, 0) / artists.length;
   const activeArtists = artists.filter(a => a.status === "active" || a.status === "busy").length;
 
   return (
@@ -295,9 +289,9 @@ const Artists = () => {
                 />
 
                 <DashboardCard
-                  title="Rating Promedio"
-                  value={averageRating.toFixed(1)}
-                  description="De 5 estrellas"
+                  title="Satisfacción"
+                  value={`${averageSatisfaction.toFixed(0)}%`}
+                  description="Promedio"
                   icon={Star}
                 />
 
@@ -427,9 +421,9 @@ const Artists = () => {
                           <div className="text-center p-2 bg-accent/20 rounded-lg">
                             <div className="flex items-center justify-center gap-1">
                               <Star className="h-3 w-3 text-yellow-500" />
-                              <span className="font-bold text-sm">{artist.performance.rating}</span>
+                              <span className="font-bold text-sm">{artist.performance.satisfaction}%</span>
                             </div>
-                            <p className="text-xs text-muted-foreground">{artist.performance.reviewsCount} reseñas</p>
+                            <p className="text-xs text-muted-foreground">Satisfacción</p>
                           </div>
                           <div className="text-center p-2 bg-success/10 rounded-lg">
                             <p className="font-bold text-sm">{artist.performance.completedTattoos}</p>

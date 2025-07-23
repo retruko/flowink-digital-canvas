@@ -74,7 +74,6 @@ const Communications = () => {
   const { toast } = useToast();
 
   const emailTypes = [
-    { type: "review_request", label: "Solicitud de Reseña", icon: Star, color: "text-yellow-500" },
     { type: "aftercare", label: "Cuidado Post-Tatuaje", icon: Heart, color: "text-red-500" },
     { type: "birthday", label: "Felicitación de Cumpleaños", icon: Gift, color: "text-purple-500" },
     { type: "appointment_reminder", label: "Recordatorio de Cita", icon: Calendar, color: "text-blue-500" },
@@ -295,7 +294,6 @@ const Communications = () => {
                                 <div>
                                   <h3 className="font-medium">{emailType.label}</h3>
                                   <p className="text-sm text-muted-foreground">
-                                    {emailType.type === 'review_request' && 'Se envía después de completar un tatuaje'}
                                     {emailType.type === 'aftercare' && 'Instrucciones de cuidado post-tatuaje'}
                                     {emailType.type === 'birthday' && 'Felicitación con descuento especial'}
                                     {emailType.type === 'appointment_reminder' && 'Recordatorio de cita próxima'}

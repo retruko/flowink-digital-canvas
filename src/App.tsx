@@ -21,6 +21,7 @@ import Estudio from "./pages/Estudio";
 import Cabinas from "./pages/Cabinas";
 import Managers from "./pages/Managers";
 import Communications from "./pages/Communications";
+import ClientProfile from "./pages/ClientProfile";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +36,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/clientes" element={<Clients />} />
+            <Route path="/clientes/:id" element={<ClientProfile />} />
             <Route path="/agenda" element={<Agenda />} />
             <Route path="/leads" element={<Leads />} />
             <Route path="/appointments" element={<Appointments />} />
