@@ -58,20 +58,20 @@ export function Header() {
         </div>
 
         <div className="flex items-center space-x-1 sm:space-x-3">
-          <Button variant="ghost" size="sm" className="relative h-6 w-6 rounded-xl hover:bg-accent/50 transition-all duration-300">
-            <MessageSquare className="h-3 w-3" />
+          <Button variant="ghost" size="sm" className="relative h-7 w-7 rounded-xl hover:bg-accent/50 transition-all duration-300">
+            <MessageSquare className="h-4 w-4" />
             <Badge 
-              className="absolute -top-1 -right-1 h-3 w-3 p-0 text-xs bg-success text-success-foreground border-2 border-background rounded-full shadow-soft"
+              className="absolute -top-1 -right-1 h-4 w-4 p-0 text-[10px] font-semibold bg-success text-success-foreground border-2 border-background rounded-full shadow-soft flex items-center justify-center"
               variant="default"
             >
               2
             </Badge>
           </Button>
           
-          <Button variant="ghost" size="sm" className="relative h-6 w-6 rounded-xl hover:bg-accent/50 transition-all duration-300">
-            <Bell className="h-3 w-3" />
+          <Button variant="ghost" size="sm" className="relative h-7 w-7 rounded-xl hover:bg-accent/50 transition-all duration-300">
+            <Bell className="h-4 w-4" />
             <Badge 
-              className="absolute -top-1 -right-1 h-3 w-3 p-0 text-xs bg-primary text-primary-foreground border-2 border-background rounded-full shadow-soft"
+              className="absolute -top-1 -right-1 h-4 w-4 p-0 text-[10px] font-semibold bg-primary text-primary-foreground border-2 border-background rounded-full shadow-soft flex items-center justify-center"
               variant="default"
             >
               5
