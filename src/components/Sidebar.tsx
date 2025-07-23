@@ -89,19 +89,19 @@ export function Sidebar() {
                       }`}
                     >
                       <div className="relative">
-                        <Icon className="h-4 w-4 mb-1.5" />
+                        <Icon className="h-6 w-6 mb-1" />
                         {item.badge && (
-                          <span className={`absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full text-xs font-medium flex items-center justify-center ${
+                          <span className={`absolute -top-1 right-0 h-5 w-5 rounded-full text-xs font-medium flex items-center justify-center ${
                             item.badge === "!" 
-                              ? "bg-red-500 text-white" 
-                              : "bg-blue-500 text-white"
+                              ? "bg-destructive text-destructive-foreground" 
+                              : "bg-primary text-primary-foreground"
                           }`}>
-                            {item.badge.length > 2 ? '9+' : item.badge}
+                            {item.badge}
                           </span>
                         )}
                         {item.count && (
-                          <span className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-blue-500 text-white text-xs font-medium rounded-full flex items-center justify-center">
-                            {item.count.length > 2 ? '9+' : item.count}
+                          <span className="absolute -top-1 right-0 h-4 w-4 bg-primary text-primary-foreground text-xs font-medium rounded-full flex items-center justify-center">
+                            {item.count.length > 2 ? '99+' : item.count}
                           </span>
                         )}
                       </div>
@@ -125,7 +125,7 @@ export function Sidebar() {
                   : "text-muted-foreground hover:text-foreground hover:bg-accent"
               }`}
             >
-              <Settings className="h-4 w-4 mb-1.5" />
+              <Settings className="h-6 w-6 mb-1" />
               <span className="text-xs font-medium">General</span>
             </Link>
             
@@ -133,7 +133,7 @@ export function Sidebar() {
               className="flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
               title="Ayuda y soporte"
             >
-              <Shield className="h-4 w-4 mb-1.5" />
+              <Shield className="h-6 w-6 mb-1" />
               <span className="text-xs font-medium">Ayuda</span>
             </button>
           </div>
