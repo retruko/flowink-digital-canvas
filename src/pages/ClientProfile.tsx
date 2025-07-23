@@ -282,7 +282,7 @@ const ClientProfile = () => {
         <div className="flex">
           <Sidebar />
           <main className="flex-1 p-8 lg:ml-20">
-            <div className="space-y-8 transform scale-[0.90] origin-top">
+            <div className="space-y-8">
               {/* Header */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-4">
