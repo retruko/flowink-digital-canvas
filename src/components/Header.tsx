@@ -80,10 +80,10 @@ export function Header() {
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="sm" className="h-10 px-2 sm:h-14 sm:px-4 rounded-2xl hover:bg-accent/50 transition-all duration-300">
-                <div className="flex items-center space-x-1 sm:space-x-3">
-                  <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-2xl bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center shadow-medium">
-                    <User className="h-4 w-4 sm:h-5 sm:w-5 text-primary-foreground" />
+              <Button variant="ghost" size="sm" className="h-8 px-2 rounded-xl hover:bg-accent/50 transition-all duration-300">
+                <div className="flex items-center space-x-2">
+                  <div className="h-6 w-6 rounded-xl bg-gradient-to-br from-primary via-primary to-primary/80 flex items-center justify-center shadow-sm">
+                    <User className="h-3 w-3 text-primary-foreground" />
                   </div>
                   <div className="hidden md:block text-left">
                     <div className="text-sm font-semibold">Alex Rivera</div>

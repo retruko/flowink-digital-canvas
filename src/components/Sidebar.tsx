@@ -22,7 +22,7 @@ import { Link, useLocation } from "react-router-dom";
 
 const menuItems = [
   {
-    section: "Principal",
+    section: "",
     items: [
       { icon: LayoutDashboard, label: "Inicio", href: "/", active: true },
       { icon: Calendar, label: "Agenda", href: "/agenda", badge: "8" },
@@ -69,12 +69,14 @@ export function Sidebar() {
             {menuItems.map((section, sectionIndex) => (
               <div key={section.section} className="space-y-2">
                 {/* Category Label */}
-                <div className="px-2 mb-3">
-                  <span className="text-xs font-bold text-muted-foreground/70 uppercase tracking-wide block text-center">
-                    {section.section}
-                  </span>
-                  <div className="w-8 h-px bg-gradient-to-r from-transparent via-border to-transparent mx-auto mt-1"></div>
-                </div>
+                {section.section && (
+                  <div className="px-2 mb-2">
+                    <span className="text-xs font-medium text-muted-foreground/60 uppercase tracking-wide block text-center">
+                      {section.section}
+                    </span>
+                    <div className="w-6 h-px bg-border/50 mx-auto mt-1"></div>
+                  </div>
+                )}
                 
                 {section.items.map((item) => {
                   const Icon = item.icon;
