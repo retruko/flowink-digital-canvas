@@ -24,6 +24,7 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { DashboardCard } from "@/components/DashboardCard";
+import { PermissionsConfig } from "@/components/PermissionsConfig";
 
 interface Manager {
   id: string;
@@ -155,7 +156,12 @@ export default function Managers() {
                 <h1 className="text-4xl font-bold text-foreground">Gestión de Managers</h1>
                 <p className="text-muted-foreground mt-2">Administra el equipo de gestión del estudio</p>
               </div>
-              <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+              <div className="flex gap-2">
+                <PermissionsConfig 
+                  userType="managers" 
+                  onSave={(permissions) => console.log('Permisos guardados:', permissions)} 
+                />
+                <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <DialogTrigger asChild>
                   <Button className="gap-2">
                     <Plus className="h-4 w-4" />
@@ -194,7 +200,8 @@ export default function Managers() {
                     <Button className="w-full">Crear Manager</Button>
                   </div>
                 </DialogContent>
-              </Dialog>
+                </Dialog>
+              </div>
             </div>
 
             {/* Stats */}

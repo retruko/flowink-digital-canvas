@@ -4,6 +4,7 @@ import { Sidebar } from "@/components/Sidebar";
 import { DashboardCard } from "@/components/DashboardCard";
 import { Button } from "@/components/ui/button";
 import { Plus, Palette, Users, Star } from "lucide-react";
+import { PermissionsConfig } from "@/components/PermissionsConfig";
 
 const Artists = () => {
   return (
@@ -19,10 +20,16 @@ const Artists = () => {
                   <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2">Tatuadores</h1>
                   <p className="text-sm sm:text-base text-muted-foreground">Gestiona el equipo de artistas</p>
                 </div>
-                <Button className="bg-primary text-primary-foreground w-full sm:w-auto">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Nuevo Artista
-                </Button>
+                <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+                  <PermissionsConfig 
+                    userType="artists" 
+                    onSave={(permissions) => console.log('Permisos de artistas guardados:', permissions)} 
+                  />
+                  <Button className="bg-primary text-primary-foreground w-full sm:w-auto">
+                    <Plus className="h-4 w-4 mr-2" />
+                    Nuevo Artista
+                  </Button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
