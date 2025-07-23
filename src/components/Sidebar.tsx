@@ -62,7 +62,7 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:flex lg:w-18 border-r border-border bg-card h-full flex-col fixed left-0 top-12 z-40">
+    <aside className="hidden lg:flex lg:w-20 border-r border-border bg-card h-[calc(100vh-48px)] flex-col fixed left-0 top-12 z-40">
       <div className="flex h-full flex-col">
         <div className="flex-1 py-2 flex flex-col justify-between">
           <div className="space-y-6">
