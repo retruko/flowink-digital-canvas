@@ -87,6 +87,87 @@ export type Database = {
           },
         ]
       }
+      client_documents: {
+        Row: {
+          client_id: string
+          created_at: string
+          document_type: string
+          file_name: string
+          file_size: number | null
+          file_url: string
+          id: string
+          notes: string | null
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          client_id: string
+          created_at?: string
+          document_type: string
+          file_name: string
+          file_size?: number | null
+          file_url: string
+          id?: string
+          notes?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          client_id?: string
+          created_at?: string
+          document_type?: string
+          file_name?: string
+          file_size?: number | null
+          file_url?: string
+          id?: string
+          notes?: string | null
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
+      client_photos: {
+        Row: {
+          appointment_id: string | null
+          client_id: string
+          created_at: string
+          description: string | null
+          file_name: string
+          file_size: number | null
+          file_url: string
+          id: string
+          photo_type: string
+          updated_at: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          appointment_id?: string | null
+          client_id: string
+          created_at?: string
+          description?: string | null
+          file_name: string
+          file_size?: number | null
+          file_url: string
+          id?: string
+          photo_type: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          appointment_id?: string | null
+          client_id?: string
+          created_at?: string
+          description?: string | null
+          file_name?: string
+          file_size?: number | null
+          file_url?: string
+          id?: string
+          photo_type?: string
+          updated_at?: string
+          uploaded_by?: string | null
+        }
+        Relationships: []
+      }
       clients: {
         Row: {
           allergies: string | null
@@ -143,48 +224,96 @@ export type Database = {
           },
         ]
       }
+      default_permissions: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          permission_key: string
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          permission_key: string
+          role: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          permission_key?: string
+          role?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       inventory_items: {
         Row: {
+          batch_number: string | null
           brand: string | null
           category: string
           color: string | null
           created_at: string
           current_stock: number
+          expiry_date: string | null
           id: string
+          ink_color_code: string | null
+          manufacturer: string | null
           min_stock_level: number
           name: string
+          needle_size: string | null
+          needle_type: string | null
           notes: string | null
           size: string | null
+          sterilization_date: string | null
           supplier: string | null
           unit_cost: number | null
           updated_at: string
         }
         Insert: {
+          batch_number?: string | null
           brand?: string | null
           category: string
           color?: string | null
           created_at?: string
           current_stock?: number
+          expiry_date?: string | null
           id?: string
+          ink_color_code?: string | null
+          manufacturer?: string | null
           min_stock_level?: number
           name: string
+          needle_size?: string | null
+          needle_type?: string | null
           notes?: string | null
           size?: string | null
+          sterilization_date?: string | null
           supplier?: string | null
           unit_cost?: number | null
           updated_at?: string
         }
         Update: {
+          batch_number?: string | null
           brand?: string | null
           category?: string
           color?: string | null
           created_at?: string
           current_stock?: number
+          expiry_date?: string | null
           id?: string
+          ink_color_code?: string | null
+          manufacturer?: string | null
           min_stock_level?: number
           name?: string
+          needle_size?: string | null
+          needle_type?: string | null
           notes?: string | null
           size?: string | null
+          sterilization_date?: string | null
           supplier?: string | null
           unit_cost?: number | null
           updated_at?: string
@@ -336,6 +465,33 @@ export type Database = {
           is_active?: boolean
           name?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      user_permissions: {
+        Row: {
+          created_at: string
+          enabled: boolean
+          id: string
+          permission_key: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          permission_key: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          enabled?: boolean
+          id?: string
+          permission_key?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
