@@ -75,7 +75,7 @@ export default function Cabinas() {
       <div className="flex">
         <Sidebar />
         <main className="flex-1 p-8 lg:ml-20">
-          <div className="space-y-8">
+          <div className="space-y-8 transform scale-[0.90] origin-top">
             {/* Header */}
             <div className="flex justify-between items-center">
               <div>

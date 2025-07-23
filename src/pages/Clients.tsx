@@ -88,7 +88,7 @@ const Clients = () => {
       <div className="flex">
         <Sidebar />
         <main className="flex-1 p-6 lg:ml-20">
-          <div className="space-y-6">
+          <div className="space-y-6 transform scale-[0.90] origin-top">
             {/* Header */}
             <div className="flex items-center justify-between">
               <div>

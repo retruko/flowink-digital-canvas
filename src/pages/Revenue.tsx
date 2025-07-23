@@ -104,7 +104,7 @@ export default function Revenue() {
         <MobileSidebar />
         
         <main className="flex-1 p-8 lg:ml-20">
-          <div className="space-y-8">
+          <div className="space-y-8 transform scale-[0.90] origin-top">
             {/* Header */}
             <div className="space-y-2">
               <h1 className="text-4xl font-bold bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent">
