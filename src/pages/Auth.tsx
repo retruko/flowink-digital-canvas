@@ -288,7 +288,7 @@ export default function Auth() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="user">Cliente</SelectItem>
-                        <SelectItem value="artist">Tatuador</SelectItem>
+                        <SelectItem value="artist">Artista</SelectItem>
                         <SelectItem value="receptionist">Recepcionista</SelectItem>
                         <SelectItem value="admin">Administrador</SelectItem>
                       </SelectContent>

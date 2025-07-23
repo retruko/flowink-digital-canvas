@@ -37,7 +37,7 @@ const App = () => (
             <Route path="/agenda" element={<Agenda />} />
             <Route path="/leads" element={<Leads />} />
             <Route path="/appointments" element={<Appointments />} />
-            <Route path="/tatuadores" element={<Artists />} />
+            <Route path="/artistas" element={<Artists />} />
             <Route path="/inventario" element={<Inventory />} />
             <Route path="/invoices" element={<Invoices />} />
             <Route path="/ingresos" element={<Revenue />} />

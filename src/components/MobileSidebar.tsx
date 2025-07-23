@@ -47,7 +47,7 @@ const menuItems = [
         ]
       },
       { icon: UserCog, label: "Managers", href: "/managers", count: "2" },
-      { icon: Palette, label: "Tatuadores", href: "/tatuadores", count: "5" },
+      { icon: Palette, label: "Artistas", href: "/artistas", count: "5" },
     ]
   },
   {

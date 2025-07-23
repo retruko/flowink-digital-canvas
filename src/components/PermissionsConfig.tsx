@@ -29,7 +29,7 @@ export const PermissionsConfig = ({ userType, onSave }: PermissionsConfigProps) 
       { id: "manage_appointments", name: "Gestionar Citas", description: "Crear, editar y cancelar citas", enabled: true },
       { id: "manage_clients", name: "Gestionar Clientes", description: "Ver y editar información de clientes", enabled: true },
       { id: "view_inventory", name: "Ver Inventario", description: "Consultar stock y materiales", enabled: false },
-      { id: "manage_artists", name: "Gestionar Artistas", description: "Administrar equipo de tatuadores", enabled: false },
+      { id: "manage_artists", name: "Gestionar Artistas", description: "Administrar equipo de artistas", enabled: false },
       { id: "view_reports", name: "Ver Reportes", description: "Acceso a reportes detallados", enabled: true },
     ],
     artists: [
@@ -74,10 +74,11 @@ export const PermissionsConfig = ({ userType, onSave }: PermissionsConfigProps) 
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Icon className="h-5 w-5" />
-            Configurar Permisos para {userType === "managers" ? "Managers" : "Tatuadores"}
+            Configurar Permisos para {userType === "managers" ? "Managers" : "Artistas"}
           </DialogTitle>
           <DialogDescription>
-            Configura qué funcionalidades pueden ver y usar los {userType === "managers" ? "managers" : "tatuadores"} del estudio.
+            Configura qué funcionalidades pueden ver y usar los {userType === "managers" ? "managers" : "artistas"} del estudio.
+            Los permisos se pueden configurar por defecto para todos, y luego personalizar individualmente para cada persona.
           </DialogDescription>
         </DialogHeader>
 
