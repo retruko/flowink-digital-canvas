@@ -92,7 +92,7 @@ export function Sidebar() {
                       }`}
                     >
                       <div className="relative mb-0.5 flex items-center justify-center">
-                        <Icon className="h-4 w-4" />
+                        <Icon className="h-3.5 w-3.5" />
                         {item.badge && (
                           <span className={`absolute -top-1 -right-1 h-3 w-3 rounded-full text-xs font-medium flex items-center justify-center ${
                             item.badge === "!" 
@@ -128,7 +128,7 @@ export function Sidebar() {
                   : "text-muted-foreground hover:text-foreground hover:bg-accent"
               }`}
             >
-              <Settings className="h-4 w-4 mb-0.5" />
+              <Settings className="h-3.5 w-3.5 mb-0.5" />
               <span className="text-xs font-medium text-center">General</span>
             </Link>
             
@@ -136,7 +136,7 @@ export function Sidebar() {
               className="flex flex-col items-center justify-center py-1.5 px-0.5 mx-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
               title="Ayuda y soporte"
             >
-              <Shield className="h-4 w-4 mb-0.5" />
+              <Shield className="h-3.5 w-3.5 mb-0.5" />
               <span className="text-xs font-medium text-center">Ayuda</span>
             </button>
           </div>
