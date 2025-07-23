@@ -20,7 +20,7 @@ import { MobileSidebar } from "./MobileSidebar";
 export function Header() {
   return (
     <header className="border-b border-border bg-card/90 backdrop-blur-xl sticky top-0 z-50 shadow-soft">
-      <div className="flex h-16 sm:h-20 items-center justify-between px-4 sm:px-8">
+      <div className="flex h-12 items-center justify-between px-4 sm:px-8">
         <div className="flex items-center space-x-2 sm:space-x-8">
           {/* Mobile menu button */}
           <Sheet>
