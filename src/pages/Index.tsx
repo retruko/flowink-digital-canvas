@@ -185,7 +185,7 @@ function DashboardContent() {
       <Header />
       <div className="flex">
         <Sidebar />
-        <main className="flex-1 p-8 bg-gradient-to-br from-background via-background to-accent/20 lg:ml-60">
+        <main className="flex-1 p-8 bg-gradient-to-br from-background via-background to-accent/20 lg:ml-16">
           <div className="max-w-7xl mx-auto">
             {renderDashboardByRole()}
           </div>
