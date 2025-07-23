@@ -68,7 +68,7 @@ export default function Leads() {
         <div className="flex-1">
           <Header />
           
-          <main className="p-4 sm:p-6 lg:p-8">
+          <main className="p-4 sm:p-6 lg:p-8 lg:ml-18">
             <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
               {/* Header */}
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

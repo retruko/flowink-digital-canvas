@@ -65,9 +65,9 @@ export function Sidebar() {
     <aside className="hidden lg:flex lg:w-18 border-r border-border bg-card h-full flex-col fixed left-0 top-12 z-40">
       <div className="flex h-full flex-col">
         <div className="flex-1 py-2 flex flex-col justify-between">
-          <div className="space-y-3">
+          <div className="space-y-6">
             {menuItems.map((section, sectionIndex) => (
-              <div key={section.section} className="space-y-1">
+              <div key={section.section} className="space-y-2">
                 {section.items.map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.href;
