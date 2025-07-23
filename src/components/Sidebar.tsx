@@ -68,14 +68,14 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:flex lg:w-80 border-r border-border bg-gradient-to-b from-card/50 via-card/30 to-card/50 backdrop-blur-sm h-full flex-col">
+    <aside className="hidden lg:flex lg:w-16 hover:lg:w-80 border-r border-border bg-gradient-to-b from-card/50 via-card/30 to-card/50 backdrop-blur-sm h-full flex-col transition-all duration-300 ease-in-out group fixed left-0 top-0 z-50">
       <div className="flex h-full flex-col">
         <div className="flex-1 overflow-auto py-8">
-          <div className="space-y-8 px-6">
+          <div className="space-y-8 px-3 group-hover:px-6 transition-all duration-300">
             {menuItems.map((section, sectionIndex) => (
               <div key={section.section}>
                 <div className="space-y-3">
-                  <h3 className="px-4 text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">
+                  <h3 className="px-4 text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {section.section}
                   </h3>
                   <div className="space-y-2">
@@ -95,14 +95,14 @@ export function Sidebar() {
                           asChild
                         >
                           <Link to={item.href}>
-                            <div className={`mr-4 h-10 w-10 rounded-xl flex items-center justify-center ${
+                            <div className={`group-hover:mr-4 h-10 w-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
                               isActive 
                                 ? "bg-primary/20 text-primary" 
                                 : "bg-muted/30 text-muted-foreground group-hover:bg-primary/10 group-hover:text-primary"
                             } transition-all duration-300`}>
                               <Icon className="h-5 w-5" />
                             </div>
-                            <span className="flex-1 text-left font-semibold">{item.label}</span>
+                            <span className="flex-1 text-left font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap overflow-hidden">{item.label}</span>
                             {item.badge && (
                               <Badge 
                                 variant="secondary"
@@ -132,14 +132,14 @@ export function Sidebar() {
         </div>
 
         {/* Team Section */}
-        <div className="border-t border-border/50 p-6 bg-gradient-to-r from-card/80 to-card/50 backdrop-blur-sm">
-          <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4">
+        <div className="border-t border-border/50 p-3 group-hover:p-6 bg-gradient-to-r from-card/80 to-card/50 backdrop-blur-sm transition-all duration-300">
+          <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-widest mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             Equipo Online
           </h3>
           <div className="space-y-3">
             {teamMembers.map((member) => (
-              <div key={member.name} className="flex items-center space-x-4 p-3 rounded-2xl hover:bg-accent/30 transition-all duration-300 group">
-                <div className="relative">
+              <div key={member.name} className="flex items-center space-x-4 p-3 rounded-2xl hover:bg-accent/30 transition-all duration-300">
+                <div className="relative flex-shrink-0">
                   <Avatar className="h-10 w-10 ring-2 ring-background shadow-medium">
                     <AvatarFallback className="bg-gradient-to-br from-primary/20 to-primary/10 text-primary text-sm font-bold">
                       {member.avatar}
@@ -150,8 +150,8 @@ export function Sidebar() {
                     member.status === "busy" ? "bg-warning" : "bg-muted"
                   }`} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold truncate group-hover:text-foreground transition-colors">{member.name}</p>
+                <div className="flex-1 min-w-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 overflow-hidden">
+                  <p className="text-sm font-semibold truncate">{member.name}</p>
                   <p className="text-xs text-muted-foreground font-medium">{member.role}</p>
                 </div>
               </div>
