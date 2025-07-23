@@ -49,12 +49,6 @@ const menuItems = [
       { icon: UserCog, label: "Managers", href: "/managers", count: "2" },
       { icon: Palette, label: "Tatuadores", href: "/tatuadores", count: "5" },
     ]
-  },
-  {
-    section: "Configuración",
-    items: [
-      { icon: Settings, label: "General", href: "/configuracion" },
-    ]
   }
 ];
 
@@ -88,30 +82,30 @@ export function Sidebar() {
                     <Link 
                       key={item.href}
                       to={item.href}
-                      className={`relative flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-xl transition-all duration-200 ${
+                      className={`relative flex flex-col items-center justify-center py-3 px-1 mx-1 rounded-lg transition-all duration-200 ${
                         isActive 
-                          ? "bg-primary text-primary-foreground shadow-lg" 
+                          ? "bg-primary text-primary-foreground shadow-sm" 
                           : "text-muted-foreground hover:text-foreground hover:bg-accent"
                       }`}
                     >
                       <div className="relative">
-                        <Icon className="h-5 w-5 mb-1" />
+                        <Icon className="h-4 w-4 mb-1.5" />
                         {item.badge && (
-                          <span className={`absolute -top-1 -right-1 h-4 w-4 rounded-full text-xs font-medium flex items-center justify-center ${
+                          <span className={`absolute -top-0.5 -right-0.5 h-3 w-3 rounded-full text-xs font-medium flex items-center justify-center ${
                             item.badge === "!" 
-                              ? "bg-destructive text-destructive-foreground" 
-                              : "bg-primary text-primary-foreground"
+                              ? "bg-red-500 text-white" 
+                              : "bg-blue-500 text-white"
                           }`}>
-                            {item.badge}
+                            {item.badge.length > 2 ? '9+' : item.badge}
                           </span>
                         )}
                         {item.count && (
-                          <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-primary-foreground text-xs font-medium rounded-full flex items-center justify-center">
-                            {item.count.length > 2 ? '99+' : item.count}
+                          <span className="absolute -top-0.5 -right-0.5 h-3 w-3 bg-blue-500 text-white text-xs font-medium rounded-full flex items-center justify-center">
+                            {item.count.length > 2 ? '9+' : item.count}
                           </span>
                         )}
                       </div>
-                      <span className="text-xs font-medium text-center leading-tight px-1">
+                      <span className="text-xs font-medium text-center leading-tight">
                         {item.label}
                       </span>
                     </Link>
@@ -121,13 +115,25 @@ export function Sidebar() {
             ))}
           </div>
 
-          {/* Help Section */}
-          <div className="border-t border-border pt-2">
+          {/* Bottom Section */}
+          <div className="border-t border-border pt-2 space-y-1">
+            <Link 
+              to="/configuracion"
+              className={`flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg transition-all duration-200 ${
+                location.pathname === "/configuracion"
+                  ? "bg-primary text-primary-foreground shadow-sm" 
+                  : "text-muted-foreground hover:text-foreground hover:bg-accent"
+              }`}
+            >
+              <Settings className="h-4 w-4 mb-1.5" />
+              <span className="text-xs font-medium">General</span>
+            </Link>
+            
             <button 
-              className="flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
+              className="flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
               title="Ayuda y soporte"
             >
-              <Shield className="h-5 w-5 mb-1" />
+              <Shield className="h-4 w-4 mb-1.5" />
               <span className="text-xs font-medium">Ayuda</span>
             </button>
           </div>
