@@ -68,19 +68,19 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:flex lg:w-20 border-r border-border bg-card h-full flex-col fixed left-0 top-0 z-40">
+    <aside className="hidden lg:flex lg:w-24 border-r border-border bg-card h-full flex-col fixed left-0 top-0 z-40">
       <div className="flex h-full flex-col">
         {/* Logo/Brand */}
-        <div className="flex items-center justify-center h-16 border-b border-border">
-          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">F</span>
+        <div className="flex items-center justify-center h-12 border-b border-border">
+          <div className="w-6 h-6 bg-primary rounded-lg flex items-center justify-center">
+            <span className="text-primary-foreground font-bold text-xs">F</span>
           </div>
         </div>
         
-        <div className="flex-1 overflow-auto py-4">
-          <div className="space-y-6">
+        <div className="flex-1 py-4 flex flex-col justify-between">
+          <div className="space-y-4">
             {menuItems.map((section, sectionIndex) => (
-              <div key={section.section} className="space-y-3">
+              <div key={section.section} className="space-y-2">
                 {section.items.map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.href;
@@ -88,7 +88,7 @@ export function Sidebar() {
                     <Link 
                       key={item.href}
                       to={item.href}
-                      className={`relative flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-xl transition-all duration-200 group ${
+                      className={`relative flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-xl transition-all duration-200 ${
                         isActive 
                           ? "bg-primary text-primary-foreground shadow-lg" 
                           : "text-muted-foreground hover:text-foreground hover:bg-accent"
@@ -111,7 +111,7 @@ export function Sidebar() {
                           </span>
                         )}
                       </div>
-                      <span className="text-xs font-medium text-center leading-tight">
+                      <span className="text-xs font-medium text-center leading-tight px-1">
                         {item.label}
                       </span>
                     </Link>
@@ -120,25 +120,17 @@ export function Sidebar() {
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Help Section */}
-        <div className="border-t border-border p-2 space-y-2">
-          <Link 
-            to="/configuracion"
-            className="flex flex-col items-center justify-center py-2 px-1 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200"
-          >
-            <Settings className="h-5 w-5 mb-1" />
-            <span className="text-xs font-medium">Config</span>
-          </Link>
-          
-          <button 
-            className="flex flex-col items-center justify-center py-2 px-1 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
-            title="Ayuda y soporte"
-          >
-            <Shield className="h-5 w-5 mb-1" />
-            <span className="text-xs font-medium">Ayuda</span>
-          </button>
+          {/* Help Section */}
+          <div className="border-t border-border pt-2">
+            <button 
+              className="flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
+              title="Ayuda y soporte"
+            >
+              <Shield className="h-5 w-5 mb-1" />
+              <span className="text-xs font-medium">Ayuda</span>
+            </button>
+          </div>
         </div>
       </div>
     </aside>
