@@ -77,7 +77,7 @@ export const ManagerDashboard = () => {
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Agenda del Día */}
         <div>
-          <Card className="h-[600px] flex flex-col">
+          <Card className="h-[450px] flex flex-col">
             <CardHeader className="flex-shrink-0">
               <div className="flex items-center justify-between">
                 <div>
@@ -142,7 +142,7 @@ export const ManagerDashboard = () => {
 
         {/* Estado de Artistas */}
         <div>
-          <Card className="h-[600px] flex flex-col">
+          <Card className="h-[450px] flex flex-col">
             <CardHeader className="flex-shrink-0">
               <CardTitle className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-primary" />
