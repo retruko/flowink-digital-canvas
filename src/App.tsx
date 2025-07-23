@@ -20,6 +20,7 @@ import Agenda from "./pages/Agenda";
 import Estudio from "./pages/Estudio";
 import Cabinas from "./pages/Cabinas";
 import Managers from "./pages/Managers";
+import Communications from "./pages/Communications";
 
 const queryClient = new QueryClient();
 
@@ -45,6 +46,7 @@ const App = () => (
             <Route path="/estudio" element={<Estudio />} />
             <Route path="/estudio/cabinas" element={<Cabinas />} />
             <Route path="/managers" element={<Managers />} />
+            <Route path="/comunicaciones" element={<Communications />} />
             <Route path="/configuracion" element={<Settings />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

@@ -251,6 +251,150 @@ export type Database = {
         }
         Relationships: []
       }
+      email_automation_settings: {
+        Row: {
+          created_at: string
+          email_type: string
+          id: string
+          is_enabled: boolean
+          send_after_days: number | null
+          send_at_time: string | null
+          template_id: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email_type: string
+          id?: string
+          is_enabled?: boolean
+          send_after_days?: number | null
+          send_at_time?: string | null
+          template_id?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email_type?: string
+          id?: string
+          is_enabled?: boolean
+          send_after_days?: number | null
+          send_at_time?: string | null
+          template_id?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_automation_settings_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "email_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_logs: {
+        Row: {
+          appointment_id: string | null
+          client_id: string | null
+          created_at: string
+          email_type: string
+          error_message: string | null
+          id: string
+          recipient_email: string
+          sent_at: string | null
+          status: string
+          subject: string
+          template_id: string | null
+        }
+        Insert: {
+          appointment_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          email_type: string
+          error_message?: string | null
+          id?: string
+          recipient_email: string
+          sent_at?: string | null
+          status?: string
+          subject: string
+          template_id?: string | null
+        }
+        Update: {
+          appointment_id?: string | null
+          client_id?: string | null
+          created_at?: string
+          email_type?: string
+          error_message?: string | null
+          id?: string
+          recipient_email?: string
+          sent_at?: string | null
+          status?: string
+          subject?: string
+          template_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_logs_appointment_id_fkey"
+            columns: ["appointment_id"]
+            isOneToOne: false
+            referencedRelation: "appointments"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_logs_client_id_fkey"
+            columns: ["client_id"]
+            isOneToOne: false
+            referencedRelation: "clients"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_logs_template_id_fkey"
+            columns: ["template_id"]
+            isOneToOne: false
+            referencedRelation: "email_templates"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      email_templates: {
+        Row: {
+          body_html: string
+          body_text: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          is_active: boolean
+          name: string
+          subject: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          body_html: string
+          body_text?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          name: string
+          subject: string
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          body_html?: string
+          body_text?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          name?: string
+          subject?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       inventory_items: {
         Row: {
           batch_number: string | null

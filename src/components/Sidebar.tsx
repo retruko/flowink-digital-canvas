@@ -13,7 +13,8 @@ import {
   Palette,
   Shield,
   Clock,
-  TrendingUp
+  TrendingUp,
+  Mail
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -48,6 +49,7 @@ const menuItems = [
       },
       { icon: UserCog, label: "Managers", href: "/managers", count: "2" },
       { icon: Palette, label: "Artistas", href: "/artistas", count: "5" },
+      { icon: Mail, label: "Comunicaciones", href: "/comunicaciones" },
     ]
   }
 ];
