@@ -71,7 +71,7 @@ export function Sidebar() {
                 {/* Category Label */}
                 {section.section && (
                   <div className="px-2 mb-2">
-                    <span className="text-[10px] font-medium text-muted-foreground/50 uppercase tracking-wide block text-center">
+                    <span className="text-[8px] font-medium text-muted-foreground/40 uppercase tracking-wide block text-center">
                       {section.section}
                     </span>
                     <div className="w-4 h-px bg-border/30 mx-auto mt-1"></div>
