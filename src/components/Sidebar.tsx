@@ -82,16 +82,16 @@ export function Sidebar() {
                     <Link 
                       key={item.href}
                       to={item.href}
-                      className={`relative flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg transition-all duration-200 ${
+                      className={`relative flex flex-col items-center justify-center py-2.5 px-0.5 mx-1 rounded-lg transition-all duration-200 ${
                         isActive 
                           ? "bg-primary text-primary-foreground shadow-sm" 
                           : "text-muted-foreground hover:text-foreground hover:bg-accent"
                       }`}
                     >
-                      <div className="relative">
-                        <Icon className="h-5 w-5 mb-1" />
+                      <div className="relative mb-1 flex items-center justify-center">
+                        <Icon className="h-5 w-5" />
                         {item.badge && (
-                          <span className={`absolute -top-1 right-0 h-4 w-4 rounded-full text-xs font-medium flex items-center justify-center ${
+                          <span className={`absolute -top-1.5 -right-1.5 h-4 w-4 rounded-full text-xs font-medium flex items-center justify-center ${
                             item.badge === "!" 
                               ? "bg-destructive text-destructive-foreground" 
                               : "bg-primary text-primary-foreground"
@@ -100,12 +100,12 @@ export function Sidebar() {
                           </span>
                         )}
                         {item.count && (
-                          <span className="absolute -top-1 right-0 h-4 w-4 bg-primary text-primary-foreground text-xs font-medium rounded-full flex items-center justify-center">
+                          <span className="absolute -top-1.5 -right-1.5 h-4 w-4 bg-primary text-primary-foreground text-xs font-medium rounded-full flex items-center justify-center">
                             {item.count.length > 2 ? '9+' : item.count}
                           </span>
                         )}
                       </div>
-                      <span className="text-xs font-medium text-center leading-tight px-0.5">
+                      <span className="text-xs font-medium text-center leading-tight w-full">
                         {item.label}
                       </span>
                     </Link>
