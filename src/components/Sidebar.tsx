@@ -68,7 +68,7 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:flex lg:w-16 border-r border-border bg-card h-full flex-col fixed left-0 top-0 z-40">
+    <aside className="hidden lg:flex lg:w-20 border-r border-border bg-card h-full flex-col fixed left-0 top-0 z-40">
       <div className="flex h-full flex-col">
         {/* Logo/Brand */}
         <div className="flex items-center justify-center h-16 border-b border-border">
@@ -80,7 +80,7 @@ export function Sidebar() {
         <div className="flex-1 overflow-auto py-4">
           <div className="space-y-6">
             {menuItems.map((section, sectionIndex) => (
-              <div key={section.section} className="space-y-1">
+              <div key={section.section} className="space-y-3">
                 {section.items.map((item) => {
                   const Icon = item.icon;
                   const isActive = location.pathname === item.href;
@@ -88,34 +88,57 @@ export function Sidebar() {
                     <Link 
                       key={item.href}
                       to={item.href}
-                      className={`relative flex items-center justify-center w-12 h-12 mx-2 rounded-xl transition-all duration-200 group ${
+                      className={`relative flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-xl transition-all duration-200 group ${
                         isActive 
                           ? "bg-primary text-primary-foreground shadow-lg" 
                           : "text-muted-foreground hover:text-foreground hover:bg-accent"
                       }`}
-                      title={item.label}
                     >
-                      <Icon className="h-5 w-5" />
-                      {item.badge && (
-                        <span className={`absolute -top-1 -right-1 h-5 w-5 rounded-full text-xs font-medium flex items-center justify-center ${
-                          item.badge === "!" 
-                            ? "bg-destructive text-destructive-foreground" 
-                            : "bg-primary text-primary-foreground"
-                        }`}>
-                          {item.badge}
-                        </span>
-                      )}
-                      {item.count && (
-                        <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-primary-foreground text-xs font-medium rounded-full flex items-center justify-center">
-                          {item.count.length > 2 ? '99+' : item.count}
-                        </span>
-                      )}
+                      <div className="relative">
+                        <Icon className="h-5 w-5 mb-1" />
+                        {item.badge && (
+                          <span className={`absolute -top-1 -right-1 h-4 w-4 rounded-full text-xs font-medium flex items-center justify-center ${
+                            item.badge === "!" 
+                              ? "bg-destructive text-destructive-foreground" 
+                              : "bg-primary text-primary-foreground"
+                          }`}>
+                            {item.badge}
+                          </span>
+                        )}
+                        {item.count && (
+                          <span className="absolute -top-1 -right-1 h-4 w-4 bg-primary text-primary-foreground text-xs font-medium rounded-full flex items-center justify-center">
+                            {item.count.length > 2 ? '99+' : item.count}
+                          </span>
+                        )}
+                      </div>
+                      <span className="text-xs font-medium text-center leading-tight">
+                        {item.label}
+                      </span>
                     </Link>
                   );
                 })}
               </div>
             ))}
           </div>
+        </div>
+
+        {/* Help Section */}
+        <div className="border-t border-border p-2 space-y-2">
+          <Link 
+            to="/configuracion"
+            className="flex flex-col items-center justify-center py-2 px-1 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200"
+          >
+            <Settings className="h-5 w-5 mb-1" />
+            <span className="text-xs font-medium">Config</span>
+          </Link>
+          
+          <button 
+            className="flex flex-col items-center justify-center py-2 px-1 rounded-xl text-muted-foreground hover:text-foreground hover:bg-accent transition-all duration-200 w-full"
+            title="Ayuda y soporte"
+          >
+            <Shield className="h-5 w-5 mb-1" />
+            <span className="text-xs font-medium">Ayuda</span>
+          </button>
         </div>
       </div>
     </aside>
