@@ -62,11 +62,11 @@ export function Sidebar() {
   const location = useLocation();
 
   return (
-    <aside className="hidden lg:flex lg:w-20 border-r border-border bg-card h-full flex-col fixed left-0 top-0 z-40">
+    <aside className="hidden lg:flex lg:w-16 border-r border-border bg-card h-full flex-col fixed left-0 top-12 z-40">
       <div className="flex h-full flex-col">
         {/* Logo/Brand */}
-        <div className="flex items-center justify-center h-8 border-b border-border">
-          <div className="w-5 h-5 bg-primary rounded-md flex items-center justify-center">
+        <div className="flex items-center justify-center h-6 border-b border-border">
+          <div className="w-4 h-4 bg-primary rounded-sm flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-xs">F</span>
           </div>
         </div>
@@ -82,14 +82,14 @@ export function Sidebar() {
                     <Link 
                       key={item.href}
                       to={item.href}
-                      className={`relative flex flex-col items-center justify-center py-2 px-1 mx-1 rounded-lg transition-all duration-200 ${
+                      className={`relative flex flex-col items-center justify-center py-1.5 px-0.5 mx-1 rounded-md transition-all duration-200 ${
                         isActive 
                           ? "bg-primary text-primary-foreground shadow-sm" 
                           : "text-muted-foreground hover:text-foreground hover:bg-accent"
                       }`}
                     >
-                      <div className="relative mb-1 flex items-center justify-center">
-                        <Icon className="h-5 w-5" />
+                      <div className="relative mb-0.5 flex items-center justify-center">
+                        <Icon className="h-4 w-4" />
                         {item.badge && (
                           <span className={`absolute -top-1 -right-1 h-3 w-3 rounded-full text-xs font-medium flex items-center justify-center ${
                             item.badge === "!" 
