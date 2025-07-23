@@ -77,8 +77,8 @@ export const ManagerDashboard = () => {
       <div className="grid gap-8 lg:grid-cols-2">
         {/* Agenda del Día */}
         <div>
-          <Card>
-            <CardHeader>
+          <Card className="h-[600px] flex flex-col">
+            <CardHeader className="flex-shrink-0">
               <div className="flex items-center justify-between">
                 <div>
                   <CardTitle className="flex items-center gap-2">
@@ -94,8 +94,8 @@ export const ManagerDashboard = () => {
                 </Button>
               </div>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
+            <CardContent className="flex-1 overflow-hidden">
+              <div className="space-y-4 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent pr-2">
                 {[
                   { time: "09:00", client: "María García", artist: "Carlos", status: "finalizada", service: "Tatuaje pequeño" },
                   { time: "10:30", client: "Juan Pérez", artist: "Sofia", status: "pendiente", service: "Consulta" },
@@ -142,15 +142,15 @@ export const ManagerDashboard = () => {
 
         {/* Estado de Artistas */}
         <div>
-          <Card>
-            <CardHeader>
+          <Card className="h-[600px] flex flex-col">
+            <CardHeader className="flex-shrink-0">
               <CardTitle className="flex items-center gap-2">
                 <Users className="w-5 h-5 text-primary" />
                 Estado Artistas
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
+            <CardContent className="flex-1 overflow-hidden">
+              <div className="space-y-3 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent pr-2">
                 {[
                   { name: "Carlos", status: "working", client: "Ana López", until: "15:30" },
                   { name: "Sofia", status: "break", until: "14:00" },

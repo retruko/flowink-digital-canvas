@@ -67,8 +67,8 @@ const statusLabels = {
 
 export function RecentAppointments() {
   return (
-    <Card className="rounded-3xl border-2 border-border bg-gradient-to-br from-card via-card to-card/95 shadow-medium backdrop-blur-sm">
-      <CardHeader>
+    <Card className="rounded-3xl border-2 border-border bg-gradient-to-br from-card via-card to-card/95 shadow-medium backdrop-blur-sm h-[600px] flex flex-col">
+      <CardHeader className="flex-shrink-0">
         <CardTitle className="flex items-center gap-3 text-xl font-bold font-display">
           <div className="h-10 w-10 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center border border-primary/20">
             <Clock className="h-5 w-5 text-primary" />
@@ -76,8 +76,8 @@ export function RecentAppointments() {
           Citas de Hoy
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="space-y-4">
+      <CardContent className="flex-1 overflow-hidden">
+        <div className="space-y-4 h-full overflow-y-auto scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent pr-2">
           {appointments.map((appointment) => (
             <div
               key={appointment.id}
