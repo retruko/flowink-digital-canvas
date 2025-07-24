@@ -38,7 +38,11 @@ import {
   Rocket,
   Gift,
   ChevronRight,
-  MonitorSpeaker
+  MonitorSpeaker,
+  AlertTriangle,
+  X,
+  User,
+  Bot
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useState, createElement } from "react";
@@ -46,6 +50,7 @@ import { useEffect, useState, createElement } from "react";
 const Landing = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [currentFeature, setCurrentFeature] = useState(0);
+  const [currentConversation, setCurrentConversation] = useState(0);
 
   useEffect(() => {
     setIsVisible(true);
@@ -54,8 +59,16 @@ const Landing = () => {
     const interval = setInterval(() => {
       setCurrentFeature((prev) => (prev + 1) % 6);
     }, 3000);
+
+    // Auto-rotate conversations every 5 seconds
+    const conversationInterval = setInterval(() => {
+      setCurrentConversation((prev) => (prev + 1) % 3);
+    }, 5000);
     
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearInterval(conversationInterval);
+    };
   }, []);
 
   const plans = [
@@ -79,8 +92,9 @@ const Landing = () => {
     },
     {
       name: "INDIVIDUAL",
-      price: "€29",
+      price: "€12",
       period: "/mes",
+      originalPrice: "€15",
       description: "Para artistas independientes que van en serio",
       features: [
         "1 rol de dueño/artista",
@@ -95,12 +109,14 @@ const Landing = () => {
       popular: true,
       ctaText: "Empezar Prueba Gratis",
       color: "from-purple-500 to-pink-500",
-      icon: Crown
+      icon: Crown,
+      annualDiscount: "20% OFF anual"
     },
     {
       name: "ESTUDIO",
-      price: "€79",
+      price: "€45",
       period: "/mes",
+      originalPrice: "€56",
       description: "Para estudios que quieren dominar el mercado",
       features: [
         "3 roles: Dueños/Managers/Artistas",
@@ -115,7 +131,8 @@ const Landing = () => {
       popular: false,
       ctaText: "Empezar Prueba Gratis",
       color: "from-blue-500 to-purple-600",
-      icon: Rocket
+      icon: Rocket,
+      annualDiscount: "20% OFF anual"
     }
   ];
 
@@ -164,19 +181,59 @@ const Landing = () => {
     }
   ];
 
+  const conversations = [
+    {
+      problem: "¿Cómo hago para llevar control de mi inventario?",
+      user: "Artista desesperado",
+      messages: [
+        { type: "user", text: "Tío no puedo más... ¿cómo hago para llevar control de todas las tintas y agujas?" },
+        { type: "bot", text: "¡Te entiendo perfectamente! 😅 Con FlowInk el inventario se controla automáticamente" },
+        { type: "user", text: "¿Automáticamente? No me jodas..." },
+        { type: "bot", text: "¡En serio! Cuando usas un material, automáticamente se descuenta. Te avisa cuando se acaba todo 🔥" },
+        { type: "user", text: "Hostia... eso me ahorraría tanto tiempo" },
+        { type: "bot", text: "¡Y no solo eso! También te predice cuándo necesitarás comprar más según tu ritmo de trabajo 🚀" }
+      ]
+    },
+    {
+      problem: "Me vino una inspección y no encuentro los consentimientos",
+      user: "Dueño estresado", 
+      messages: [
+        { type: "user", text: "AYUDA! Me vino una inspección de sanidad y no encuentro los consentimientos de los clientes 😰" },
+        { type: "bot", text: "¡Tranquilo! Con FlowInk todos los consentimientos están organizados automáticamente" },
+        { type: "user", text: "Pero tengo como 200 clientes, es imposible..." },
+        { type: "bot", text: "FlowInk busca por cliente, fecha, tipo de trabajo... ¡Lo encuentras en 2 segundos! 📋" },
+        { type: "user", text: "Y además están firmados digitalmente?" },
+        { type: "bot", text: "¡Claro! Con firma digital válida legalmente. Los inspectores alucinarán con tu organización 😎" }
+      ]
+    },
+    {
+      problem: "Pierdo muchos clientes turistas porque no me entienden",
+      user: "Artista frustrado",
+      messages: [
+        { type: "user", text: "Pierdo muchísimos clientes turistas porque no hablo sus idiomas..." },
+        { type: "bot", text: "¡Eso se acabó! FlowInk tiene formularios automáticos en 15+ idiomas 🌍" },
+        { type: "user", text: "¿Pero cómo? ¿Tengo que traducir todo yo?" },
+        { type: "bot", text: "¡Para nada! FlowInk detecta automáticamente el idioma del cliente y adapta todo" },
+        { type: "user", text: "Hasta los consentimientos?" },
+        { type: "bot", text: "¡Todo! Formularios, consentimientos, emails... El cliente se siente como en casa 🏠" },
+        { type: "user", text: "Esto me puede cambiar la vida... vivo en zona turística" }
+      ]
+    }
+  ];
+
   const testimonials = [
     {
       name: "Carlos Martinez",
       role: "Dueño - InkFlow Studio Madrid",
-      content: "FlowInk nos ayudó a crecer de 2 a 8 artistas en 6 meses. Los formularios automáticos capturan turistas que antes perdíamos.",
+      content: "FlowInk me salvó cuando vino la inspección. Todo perfectamente organizado en segundos. Los inspectores dijeron que nunca habían visto algo tan profesional.",
       rating: 5,
       avatar: "CM",
-      stats: "300% más clientes"
+      stats: "100% sin multas"
     },
     {
       name: "Ana Rodriguez", 
       role: "Artista Independiente Barcelona",
-      content: "Antes perdía 3 horas al día en papeleo. Ahora FlowInk lo hace todo automático. Puedo enfocarme solo en tatuar.",
+      content: "Antes perdía 3 horas al día buscando papeles. Ahora FlowInk lo hace todo automático. Solo me enfoco en tatuar y ganar dinero.",
       rating: 5,
       avatar: "AR",
       stats: "3h/día ahorradas"
@@ -184,49 +241,10 @@ const Landing = () => {
     {
       name: "David Garcia",
       role: "Manager - TattooVibe Valencia",
-      content: "El control de permisos es increíble. Cada artista solo ve sus datos, pero yo tengo visión completa del negocio.",
+      content: "Los formularios en 15 idiomas son una locura. Ahora captamos turistas que antes se iban. Hemos triplicado ingresos en verano.",
       rating: 5,
       avatar: "DG",
-      stats: "100% control"
-    }
-  ];
-
-  const competitorComparison = [
-    {
-      feature: "Gestión de Leads",
-      inkoru: false,
-      flowink: true,
-      description: "Captura y nurturing automático"
-    },
-    {
-      feature: "Formularios Multiidioma",
-      inkoru: false,
-      flowink: true,
-      description: "15+ idiomas para turistas"
-    },
-    {
-      feature: "Trazabilidad Completa",
-      inkoru: false,
-      flowink: true,
-      description: "Customer journey completo"
-    },
-    {
-      feature: "IA y Predicciones",
-      inkoru: false,
-      flowink: true,
-      description: "Analytics inteligentes"
-    },
-    {
-      feature: "Agenda Básica",
-      inkoru: true,
-      flowink: true,
-      description: "Gestión de citas"
-    },
-    {
-      feature: "Control de Roles",
-      inkoru: true,
-      flowink: true,
-      description: "Permisos granulares"
+      stats: "300% más turistas"
     }
   ];
 
@@ -259,8 +277,8 @@ const Landing = () => {
               <span className="text-2xl font-black gradient-text">FlowInk</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
-              <a href="#features" className="text-gray-600 hover:text-purple-600 transition-all duration-300 story-link">Características</a>
-              <a href="#comparison" className="text-gray-600 hover:text-purple-600 transition-all duration-300 story-link">vs Competencia</a>
+              <a href="#problemas" className="text-gray-600 hover:text-purple-600 transition-all duration-300 story-link">Problemas Reales</a>
+              <a href="#features" className="text-gray-600 hover:text-purple-600 transition-all duration-300 story-link">Soluciones</a>
               <a href="#pricing" className="text-gray-600 hover:text-purple-600 transition-all duration-300 story-link">Precios</a>
               <a href="#testimonials" className="text-gray-600 hover:text-purple-600 transition-all duration-300 story-link">Testimonios</a>
             </div>
@@ -281,71 +299,70 @@ const Landing = () => {
         </div>
       </nav>
 
-      {/* Hero Section with Advanced Animations */}
+      {/* Hero Section with Problem-Solution Focus */}
       <section className="relative py-24 px-6 overflow-hidden">
         <div className="container mx-auto relative z-10">
           <div className="max-w-5xl mx-auto text-center">
             <div className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <Badge variant="outline" className="mb-8 px-6 py-3 text-purple-600 border-purple-200 bg-purple-50/80 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
-                <Zap className="h-5 w-5 mr-2 animate-pulse" />
-                🚀 La revolución que Inkoru no vio venir
+              <Badge variant="outline" className="mb-8 px-6 py-3 text-red-600 border-red-200 bg-red-50/80 backdrop-blur-sm hover:scale-105 transition-transform duration-300">
+                <AlertTriangle className="h-5 w-5 mr-2 animate-pulse" />
+                🚨 ¿Cansado de perder tiempo con papeleos infinitos?
               </Badge>
               
               <h1 className="text-7xl md:text-8xl font-black mb-8 leading-tight">
-                <span className="block gradient-text animate-bounce-in">
-                  FlowInk hace que
+                <span className="block text-gray-900 animate-bounce-in">
+                  Basta de
                 </span>
-                <span className="block text-gray-900 animate-bounce-in" style={{ animationDelay: '0.2s' }}>
+                <span className="block text-red-600 animate-bounce-in" style={{ animationDelay: '0.2s' }}>
                   <span className="relative">
-                    Inkoru parezca
-                    <div className="absolute -inset-1 bg-gradient-to-r from-yellow-400 to-orange-400 opacity-30 blur transform -skew-y-1 animate-pulse"></div>
+                    CAOS
+                    <div className="absolute -inset-1 bg-gradient-to-r from-red-400 to-orange-400 opacity-30 blur transform -skew-y-1 animate-pulse"></div>
                   </span>
                 </span>
                 <span className="block gradient-text animate-bounce-in text-6xl" style={{ animationDelay: '0.4s' }}>
-                  del siglo pasado
+                  en tu estudio
                 </span>
               </h1>
               
               <p className="text-2xl md:text-3xl text-gray-600 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-up" style={{ animationDelay: '0.6s' }}>
-                <span className="font-bold text-purple-600">TODO lo que hace Inkoru</span> + 
-                <span className="font-bold text-pink-600"> gestión inteligente de leads</span> + 
-                <span className="font-bold text-blue-600"> formularios multiidioma</span> + 
-                <span className="font-bold text-green-600"> IA predictiva</span>
+                <span className="font-bold text-red-600">¿Papeles perdidos?</span> 
+                <span className="font-bold text-orange-600"> ¿Inspecciones que te dan ansiedad?</span> 
+                <span className="font-bold text-purple-600"> ¿Clientes que se van porque no los entiendes?</span>
                 <span className="block mt-3 text-xl text-gray-500">
-                  La plataforma que los estudios modernos necesitan
+                  <span className="font-bold text-green-600">FlowInk resuelve TODO</span> eso automáticamente
                 </span>
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16 animate-scale-in" style={{ animationDelay: '0.8s' }}>
                 <Link to="/auth">
-                  <Button size="lg" className="bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-white px-10 py-5 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 animate-pulse-glow group">
-                    <Rocket className="h-6 w-6 mr-3 group-hover:rotate-12 transition-transform duration-300" />
-                    Superar a Inkoru GRATIS
+                  <Button size="lg" className="bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 hover:from-green-700 hover:via-emerald-700 hover:to-teal-700 text-white px-10 py-5 text-xl font-bold shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 animate-pulse-glow group">
+                    <CheckCircle className="h-6 w-6 mr-3 group-hover:scale-110 transition-transform duration-300" />
+                    RESOLVER MIS PROBLEMAS GRATIS
                     <ChevronRight className="h-6 w-6 ml-3 group-hover:translate-x-1 transition-transform duration-300" />
                   </Button>
                 </Link>
                 <Button variant="outline" size="lg" className="px-10 py-5 text-xl border-purple-200 text-purple-600 hover:bg-purple-50 hover-lift group">
                   <Play className="h-6 w-6 mr-3 group-hover:scale-110 transition-transform duration-300" />
-                  Ver Por Qué Somos Mejores
+                  Ver Cómo Funciona
                 </Button>
               </div>
               
               <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center animate-fade-up" style={{ animationDelay: '1s' }}>
                 <div className="glass p-6 rounded-2xl hover-lift">
-                  <div className="text-3xl font-black text-purple-600">500+</div>
-                  <div className="text-sm text-gray-500">Estudios migrando de Inkoru</div>
-                </div>
-                <div className="glass p-6 rounded-2xl hover-lift">
-                  <div className="text-3xl font-black text-pink-600">10x</div>
-                  <div className="text-sm text-gray-500">Más funciones que Inkoru</div>
+                  <div className="text-3xl font-black text-green-600">0</div>
+                  <div className="text-sm text-gray-500">Papeles perdidos</div>
                 </div>
                 <div className="glass p-6 rounded-2xl hover-lift">
                   <div className="text-3xl font-black text-blue-600">5min</div>
-                  <div className="text-sm text-gray-500">Setup vs 2h de Inkoru</div>
+                  <div className="text-sm text-gray-500">Setup total</div>
                 </div>
                 <div className="glass p-6 rounded-2xl hover-lift">
-                  <div className="text-3xl font-black text-green-600">€0</div>
-                  <div className="text-sm text-gray-500">Empezar (Inkoru cobra desde día 1)</div>
+                  <div className="text-3xl font-black text-purple-600">15+</div>
+                  <div className="text-sm text-gray-500">Idiomas automáticos</div>
+                </div>
+                <div className="glass p-6 rounded-2xl hover-lift">
+                  <div className="text-3xl font-black text-orange-600">100%</div>
+                  <div className="text-sm text-gray-500">Legal y seguro</div>
                 </div>
               </div>
             </div>
@@ -353,120 +370,89 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Animated Feature Showcase */}
-      <section className="py-20 px-6 bg-gradient-to-r from-purple-50/50 to-pink-50/30 backdrop-blur-sm">
+      {/* WhatsApp Conversations Section */}
+      <section id="problemas" className="py-20 px-6 bg-gradient-to-r from-green-50/50 to-emerald-50/30 backdrop-blur-sm">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold mb-6">
-              Características que <span className="gradient-text">Inkoru no tiene</span>
-            </h2>
-            <p className="text-xl text-gray-600">Y que están revolucionando la industria</p>
-          </div>
-
-          <div className="flex justify-center mb-12">
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-xl">
-              <div className="w-24 h-24 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center">
-                {createElement(animatedFeatures[currentFeature].icon, {
-                  className: `h-12 w-12 text-purple-600 transition-all duration-500 ${currentFeature === 0 ? 'animate-bounce' : ''}`
-                })}
-              </div>
-              <h3 className="text-2xl font-bold text-center mb-2">
-                {animatedFeatures[currentFeature].title}
-              </h3>
-              <p className="text-gray-600 text-center">
-                {animatedFeatures[currentFeature].description}
-              </p>
-            </div>
-          </div>
-
-          <div className="flex justify-center space-x-2">
-            {animatedFeatures.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  currentFeature === index ? 'bg-purple-600 scale-125' : 'bg-gray-300 hover:bg-gray-400'
-                }`}
-                onClick={() => setCurrentFeature(index)}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Comparison with Inkoru */}
-      <section id="comparison" className="py-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <Badge variant="outline" className="mb-4 text-purple-600 border-purple-200 bg-purple-50/50">
-              <Target className="h-4 w-4 mr-2" />
-              FlowInk vs Inkoru
+            <Badge variant="outline" className="mb-4 text-green-600 border-green-200 bg-green-50/50">
+              <MessageSquare className="h-4 w-4 mr-2" />
+              Problemas Reales • Soluciones Reales
             </Badge>
             <h2 className="text-5xl font-bold mb-6">
-              <span className="gradient-text">¿Por qué cambiar</span> de Inkoru?
+              ¿Te suena <span className="text-red-600">familiar</span>?
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Porque hacer lo mismo de siempre no te diferencia de la competencia
-            </p>
+            <p className="text-xl text-gray-600">Estas son conversaciones REALES de tatuadores desesperados</p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden">
-              <div className="grid grid-cols-3 gap-0">
-                <div className="p-6 text-center bg-gray-50">
-                  <h3 className="font-bold text-gray-600">Funcionalidad</h3>
+            <div className="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-200">
+              {/* WhatsApp Header */}
+              <div className="bg-green-600 text-white p-4 flex items-center gap-3">
+                <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                  <MessageSquare className="h-6 w-6" />
                 </div>
-                <div className="p-6 text-center bg-red-50">
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-8 h-8 bg-gray-400 rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">I</span>
-                    </div>
-                    <span className="font-bold text-gray-600">Inkoru</span>
-                  </div>
-                </div>
-                <div className="p-6 text-center bg-gradient-to-r from-purple-50 to-pink-50">
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg flex items-center justify-center">
-                      <Palette className="w-4 h-4 text-white" />
-                    </div>
-                    <span className="font-bold gradient-text">FlowInk</span>
-                  </div>
+                <div>
+                  <h3 className="font-bold">{conversations[currentConversation].user}</h3>
+                  <p className="text-sm opacity-80">En línea</p>
                 </div>
               </div>
 
-              {competitorComparison.map((item, index) => (
-                <div key={index} className={`grid grid-cols-3 gap-0 border-t border-gray-100 ${index % 2 === 0 ? 'bg-white/50' : 'bg-gray-50/50'} hover:bg-purple-50/30 transition-colors duration-300`}>
-                  <div className="p-6">
-                    <div className="font-semibold text-gray-900">{item.feature}</div>
-                    <div className="text-sm text-gray-500">{item.description}</div>
-                  </div>
-                  <div className="p-6 text-center">
-                    {item.inkoru ? (
-                      <CheckCircle className="h-6 w-6 text-green-500 mx-auto" />
-                    ) : (
-                      <div className="w-6 h-6 rounded-full bg-red-100 mx-auto flex items-center justify-center">
-                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6 text-center">
-                    <div className="flex items-center justify-center">
-                      <CheckCircle className="h-6 w-6 text-green-500" />
-                      {!item.inkoru && (
-                        <Badge className="ml-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs">
-                          EXCLUSIVO
-                        </Badge>
+              {/* Chat Messages */}
+              <div className="p-6 space-y-4 bg-gray-50 min-h-[400px]">
+                {conversations[currentConversation].messages.map((message, index) => (
+                  <div
+                    key={index}
+                    className={`flex ${message.type === 'user' ? 'justify-end' : 'justify-start'} animate-fade-up`}
+                    style={{ animationDelay: `${index * 0.3}s` }}
+                  >
+                    <div className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl relative ${
+                      message.type === 'user' 
+                        ? 'bg-green-500 text-white rounded-br-sm' 
+                        : 'bg-white text-gray-800 rounded-bl-sm shadow-sm border'
+                    }`}>
+                      {message.type === 'bot' && (
+                        <div className="flex items-center gap-2 mb-2">
+                          <Bot className="h-4 w-4 text-purple-600" />
+                          <span className="text-xs font-bold text-purple-600">FlowInk</span>
+                        </div>
                       )}
+                      <p className="text-sm leading-relaxed">{message.text}</p>
+                      <div className={`text-xs mt-1 ${message.type === 'user' ? 'text-green-100' : 'text-gray-500'}`}>
+                        {`${Math.floor(Math.random() * 12) + 1}:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}`}
+                      </div>
                     </div>
                   </div>
+                ))}
+              </div>
+
+              {/* Problem solved indicator */}
+              <div className="bg-gradient-to-r from-green-600 to-emerald-600 text-white p-4 text-center">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <CheckCircle className="h-6 w-6" />
+                  <span className="font-bold">¡PROBLEMA RESUELTO!</span>
                 </div>
+                <p className="text-sm opacity-90">{conversations[currentConversation].problem}</p>
+              </div>
+            </div>
+
+            {/* Conversation indicators */}
+            <div className="flex justify-center space-x-2 mt-8">
+              {conversations.map((_, index) => (
+                <button
+                  key={index}
+                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    currentConversation === index ? 'bg-green-600 scale-125' : 'bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  onClick={() => setCurrentConversation(index)}
+                />
               ))}
             </div>
 
             <div className="text-center mt-8">
               <Link to="/auth">
                 <Button size="lg" className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white px-8 py-4 text-lg font-semibold shadow-xl hover:shadow-2xl transition-all duration-300">
-                  <UserCheck className="h-5 w-5 mr-2" />
-                  Migrar de Inkoru es GRATIS
+                  <Zap className="h-5 w-5 mr-2" />
+                  ¡QUIERO RESOLVER MIS PROBLEMAS YA!
                 </Button>
               </Link>
             </div>
@@ -474,19 +460,19 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Features Section with Advanced Animations */}
+      {/* Features Section with Problem-Solution Focus */}
       <section id="features" className="py-20 px-6 bg-gradient-to-br from-purple-50/30 to-pink-50/20">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 text-purple-600 border-purple-200 bg-purple-50/50">
-              <Sparkles className="h-4 w-4 mr-2" />
-              Funciones Revolucionarias
+              <Rocket className="h-4 w-4 mr-2" />
+              El Software Tatuador Definitivo
             </Badge>
             <h2 className="text-5xl font-bold mb-6">
-              Lo que realmente <span className="gradient-text">diferencia a FlowInk</span>
+              Por fin un software hecho <span className="gradient-text">POR tatuadores, PARA tatuadores</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Mientras la competencia hace lo básico, nosotros redefinimos la gestión de estudios
+              Cansados de software genérico, creamos la solución específica que necesitas
             </p>
           </div>
           
@@ -513,8 +499,8 @@ const Landing = () => {
                       {feature.description}
                     </p>
                     <div className="mt-4 text-center">
-                      <Badge variant="outline" className="text-xs text-purple-600 border-purple-200">
-                        EXCLUSIVO DE FLOWINK
+                      <Badge variant="outline" className="text-xs text-green-600 border-green-200 bg-green-50">
+                        ✅ PROBLEMA RESUELTO
                       </Badge>
                     </div>
                   </CardContent>
@@ -530,15 +516,24 @@ const Landing = () => {
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 text-purple-600 border-purple-200 bg-white/50">
-              <Crown className="h-4 w-4 mr-2" />
-              Planes que se Adaptan a Ti
+              <DollarSign className="h-4 w-4 mr-2" />
+              Precios Honestos
             </Badge>
             <h2 className="text-5xl font-bold mb-6">
-              Desde empezar <span className="gradient-text">gratis</span> hasta dominar el mercado
+              Sin <span className="text-red-600">chorradas</span>, sin letra pequeña
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Sin ataduras, sin permanencia. Paga solo por lo que necesitas cuando lo necesitas.
+              Planes transparentes diseñados para que ganes más y gastes menos
             </p>
+            
+            <div className="mt-8 inline-flex items-center gap-4 bg-white rounded-full p-2 shadow-lg">
+              <Button variant="outline" size="sm" className="rounded-full">
+                Mensual
+              </Button>
+              <Button size="sm" className="rounded-full bg-gradient-to-r from-green-600 to-emerald-600 text-white">
+                Anual (20% OFF)
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -548,7 +543,7 @@ const Landing = () => {
                 <Card 
                   key={index}
                   className={`relative group hover-lift transition-all duration-500 border-0 shadow-medium hover:shadow-strong bg-white/90 backdrop-blur-sm ${
-                    plan.popular ? 'scale-105 ring-4 ring-purple-500/30 shadow-glow' : ''
+                    plan.popular ? 'scale-105 ring-4 ring-green-500/30 shadow-glow' : ''
                   } animate-scale-in overflow-hidden`}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
@@ -556,9 +551,9 @@ const Landing = () => {
                   
                   {plan.popular && (
                     <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
-                      <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-2 text-sm font-bold shadow-xl animate-bounce">
+                      <Badge className="bg-gradient-to-r from-green-600 to-emerald-600 text-white px-6 py-2 text-sm font-bold shadow-xl animate-bounce">
                         <Crown className="h-4 w-4 mr-1" />
-                        MÁS POPULAR
+                        MÁS ELEGIDO
                       </Badge>
                     </div>
                   )}
@@ -571,7 +566,15 @@ const Landing = () => {
                     <div className="flex items-baseline justify-center gap-2 mb-2">
                       <span className="text-5xl font-black gradient-text">{plan.price}</span>
                       <span className="text-gray-500 text-lg">{plan.period}</span>
+                      {plan.originalPrice && (
+                        <span className="text-red-500 line-through text-lg">{plan.originalPrice}</span>
+                      )}
                     </div>
+                    {plan.annualDiscount && (
+                      <Badge className="bg-green-100 text-green-700 text-xs mb-2">
+                        {plan.annualDiscount}
+                      </Badge>
+                    )}
                     <CardDescription className="text-gray-600 font-medium">
                       {plan.description}
                     </CardDescription>
@@ -591,7 +594,7 @@ const Landing = () => {
                       <Button 
                         className={`w-full py-4 text-lg font-bold transition-all duration-500 hover:scale-105 ${
                           plan.popular 
-                            ? 'bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 hover:from-purple-700 hover:via-pink-700 hover:to-red-700 text-white shadow-xl hover:shadow-2xl animate-pulse-glow' 
+                            ? 'bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 hover:from-green-700 hover:via-emerald-700 hover:to-teal-700 text-white shadow-xl hover:shadow-2xl animate-pulse-glow' 
                             : 'bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl'
                         }`}
                       >
@@ -601,7 +604,7 @@ const Landing = () => {
                     </Link>
                     
                     <p className="text-xs text-center text-gray-500">
-                      {plan.name === "FREE" ? "Gratis para siempre" : "Prueba gratis 14 días • Sin permanencia"}
+                      {plan.name === "FREE" ? "Gratis para siempre • Sin tarjeta" : "Prueba gratis 14 días • Cancela cuando quieras"}
                     </p>
                   </CardContent>
                 </Card>
@@ -610,11 +613,7 @@ const Landing = () => {
           </div>
 
           <div className="text-center mt-12">
-            <p className="text-gray-600 mb-4">¿Vienes de Inkoru? Te ayudamos a migrar</p>
-            <Button variant="outline" size="lg" className="border-purple-200 text-purple-600 hover:bg-purple-50">
-              <Headphones className="h-5 w-5 mr-2" />
-              Migración Gratuita desde Inkoru
-            </Button>
+            <p className="text-gray-600 mb-4">💰 Garantía de devolución 30 días | 🔒 Datos 100% seguros | 📞 Soporte en español</p>
           </div>
         </div>
       </section>
@@ -625,13 +624,13 @@ const Landing = () => {
           <div className="text-center mb-16">
             <Badge variant="outline" className="mb-4 text-purple-600 border-purple-200 bg-purple-50/50">
               <Heart className="h-4 w-4 mr-2" />
-              Historias de Éxito Reales
+              Tatuadores Felices
             </Badge>
             <h2 className="text-5xl font-bold mb-6">
-              <span className="gradient-text">Estudios reales</span> con resultados reales
+              <span className="gradient-text">Dejaron de sufrir</span> y ahora solo se enfocan en tatuar
             </h2>
             <p className="text-xl text-gray-600">
-              Más de 500 estudios ya migraron de Inkoru a FlowInk
+              Historias reales de tatuadores que recuperaron su tiempo y cordura
             </p>
           </div>
 
@@ -652,7 +651,7 @@ const Landing = () => {
                     <div>
                       <h4 className="font-bold text-lg">{testimonial.name}</h4>
                       <p className="text-sm text-gray-500">{testimonial.role}</p>
-                      <Badge variant="outline" className="mt-1 text-xs">
+                      <Badge variant="outline" className="mt-1 text-xs text-green-600 border-green-200 bg-green-50">
                         {testimonial.stats}
                       </Badge>
                     </div>
@@ -669,7 +668,7 @@ const Landing = () => {
                   </p>
                   <div className="mt-4 pt-4 border-t border-gray-100">
                     <Badge className="bg-green-100 text-green-700 text-xs">
-                      ✓ Migrado desde Inkoru
+                      ✓ Problema resuelto con FlowInk
                     </Badge>
                   </div>
                 </CardContent>
@@ -692,32 +691,35 @@ const Landing = () => {
           <div className="max-w-4xl mx-auto">
             <Badge variant="outline" className="mb-8 px-6 py-3 border-white/30 text-white bg-white/10 backdrop-blur-sm">
               <Rocket className="h-5 w-5 mr-2" />
-              El Momento es AHORA
+              Es AHORA o NUNCA
             </Badge>
             
             <h2 className="text-6xl md:text-7xl font-black mb-8 animate-bounce-in">
-              ¿Listo para dejar atrás
-              <span className="block bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
-                la era Inkoru?
+              ¿Vas a seguir 
+              <span className="block bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+                sufriendo
+              </span>
+              <span className="block text-white">
+                o lo solucionas YA?
               </span>
             </h2>
             
             <p className="text-2xl mb-12 opacity-90 max-w-3xl mx-auto animate-fade-up leading-relaxed" style={{ animationDelay: '0.2s' }}>
-              Únete a los <span className="font-bold text-yellow-300">500+ estudios</span> que ya están 
-              <span className="font-bold text-pink-300"> dominando su mercado</span> con FlowInk
+              Miles de tatuadores ya <span className="font-bold text-green-300">resolvieron sus problemas</span> con FlowInk.
+              <span className="block font-bold text-yellow-300">¿Cuánto tiempo más vas a perder?</span>
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12 animate-scale-in" style={{ animationDelay: '0.4s' }}>
               <Link to="/auth">
-                <Button size="lg" variant="secondary" className="bg-white text-purple-900 hover:bg-gray-100 px-12 py-6 text-2xl font-black shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 group">
-                  <Sparkles className="h-7 w-7 mr-3 group-hover:rotate-180 transition-transform duration-500" />
-                  EMPEZAR GRATIS AHORA
+                <Button size="lg" variant="secondary" className="bg-gradient-to-r from-green-500 to-emerald-500 text-white hover:from-green-600 hover:to-emerald-600 px-12 py-6 text-2xl font-black shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-110 group">
+                  <CheckCircle className="h-7 w-7 mr-3 group-hover:scale-110 transition-transform duration-500" />
+                  SÍ, QUIERO DEJAR DE SUFRIR
                   <ArrowRight className="h-7 w-7 ml-3 group-hover:translate-x-2 transition-transform duration-300" />
                 </Button>
               </Link>
               <Button variant="outline" size="lg" className="border-white/50 text-white hover:bg-white/10 px-12 py-6 text-2xl font-bold backdrop-blur-sm">
-                <MonitorSpeaker className="h-7 w-7 mr-3" />
-                Ver Demo en Vivo
+                <X className="h-7 w-7 mr-3" />
+                No, prefiero seguir sufriendo
               </Button>
             </div>
             
@@ -728,16 +730,16 @@ const Landing = () => {
               </div>
               <div className="flex items-center justify-center gap-3">
                 <CheckCircle className="h-6 w-6 text-green-400" />
-                <span>Migración desde Inkoru gratis</span>
+                <span>14 días gratis • Sin compromisos</span>
               </div>
               <div className="flex items-center justify-center gap-3">
                 <CheckCircle className="h-6 w-6 text-green-400" />
-                <span>Soporte 24/7 en español</span>
+                <span>Soporte tatuador 24/7</span>
               </div>
             </div>
             
             <p className="text-sm opacity-75 mt-8 animate-pulse">
-              ⚡ Los primeros 100 estudios reciben configuración VIP gratuita ⚡
+              ⚡ Oferta especial: Los primeros 100 estudios reciben configuración GRATIS ⚡
             </p>
           </div>
         </div>
@@ -755,7 +757,7 @@ const Landing = () => {
                 <span className="text-2xl font-bold text-white">FlowInk</span>
               </div>
               <p className="text-gray-400">
-                Revolucionando la gestión de estudios de tatuaje en todo el mundo.
+                El software que finalmente entiende a los tatuadores.
               </p>
               <div className="flex gap-4">
                 {[...Array(5)].map((_, i) => (
@@ -766,32 +768,32 @@ const Landing = () => {
             </div>
             
             <div>
-              <h4 className="font-bold text-white mb-4">Producto</h4>
+              <h4 className="font-bold text-white mb-4">Soluciones</h4>
               <ul className="space-y-2">
-                <li><a href="#features" className="hover:text-white transition-colors">Características</a></li>
-                <li><a href="#pricing" className="hover:text-white transition-colors">Precios</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">API</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Integraciones</a></li>
+                <li><a href="#features" className="hover:text-white transition-colors">Gestión automática</a></li>
+                <li><a href="#pricing" className="hover:text-white transition-colors">Precios transparentes</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Soporte tatuador</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Formación gratis</a></li>
               </ul>
             </div>
             
             <div>
               <h4 className="font-bold text-white mb-4">Empresa</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">Sobre nosotros</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Blog</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Carreras</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Nuestra historia</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Blog tatuador</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Únete al equipo</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Contacto</a></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-bold text-white mb-4">Migración</h4>
+              <h4 className="font-bold text-white mb-4">Ayuda</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition-colors">Desde Inkoru</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Desde TattooNet</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Guías de migración</a></li>
-                <li><a href="#" className="hover:text-white transition-colors">Soporte técnico</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Centro de ayuda</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Guías paso a paso</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Video tutoriales</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">WhatsApp soporte</a></li>
               </ul>
             </div>
           </div>
@@ -800,10 +802,10 @@ const Landing = () => {
             <div className="flex items-center gap-6 text-sm mb-4 md:mb-0">
               <a href="#" className="hover:text-white transition-colors">Privacidad</a>
               <a href="#" className="hover:text-white transition-colors">Términos</a>
-              <a href="#" className="hover:text-white transition-colors">Cookies</a>
+              <a href="#" className="hover:text-white transition-colors">Legal</a>
             </div>
             <div className="text-sm text-gray-500">
-              © 2024 FlowInk. Transformando la industria del tatuaje.
+              © 2024 FlowInk. Hecho con ❤️ por tatuadores, para tatuadores.
             </div>
           </div>
         </div>
