@@ -25,7 +25,7 @@ const menuItems = [
   {
     section: "",
     items: [
-      { icon: LayoutDashboard, label: "Inicio", href: "/", active: true },
+      { icon: LayoutDashboard, label: "Inicio", href: "/dashboard", active: true },
       { icon: Calendar, label: "Agenda", href: "/agenda", badge: "8" },
       { icon: Users, label: "Clientes", href: "/clientes", count: "284" },
     ]
