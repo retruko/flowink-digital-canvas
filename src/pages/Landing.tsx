@@ -258,23 +258,36 @@ const Landing = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-purple-50/30 to-pink-50/20 overflow-hidden">
-      {/* Animated Background Elements */}
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 overflow-hidden relative">
+      {/* Manychat-style Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-cyan-400/10 to-blue-400/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-cyan-400/20 to-blue-400/20 rounded-full blur-3xl animate-bounce" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-br from-yellow-400/20 to-orange-400/20 rounded-full blur-3xl animate-spin" style={{ animationDelay: '2s', animationDuration: '10s' }} />
+        <div className="absolute top-10 right-1/4 w-32 h-32 bg-gradient-to-br from-green-400/15 to-emerald-400/15 rounded-full blur-2xl animate-bounce" style={{ animationDelay: '3s' }} />
+        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-gradient-to-br from-rose-400/15 to-pink-400/15 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '4s' }} />
+        
+        {/* Floating Elements */}
+        <div className="absolute top-1/4 left-20 animate-float">
+          <div className="w-4 h-4 bg-purple-400 rounded-full opacity-60"></div>
+        </div>
+        <div className="absolute top-1/3 right-32 animate-float" style={{ animationDelay: '1s' }}>
+          <div className="w-6 h-6 bg-cyan-400 rounded-full opacity-50"></div>
+        </div>
+        <div className="absolute bottom-1/3 left-1/3 animate-float" style={{ animationDelay: '2s' }}>
+          <div className="w-3 h-3 bg-yellow-400 rounded-full opacity-70"></div>
+        </div>
       </div>
 
-      {/* Navigation with Blur Effect */}
-      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/90 border-b border-purple-100/50 transition-all duration-300">
+      {/* Navigation with Manychat style */}
+      <nav className="sticky top-0 z-50 backdrop-blur-xl bg-white/95 border-b border-purple-200/50 transition-all duration-300 shadow-lg">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-pink-600 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                <Palette className="h-6 w-6 text-white" />
+            <div className="flex items-center gap-3 group cursor-pointer">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-600 via-pink-500 to-orange-500 flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 animate-pulse">
+                <Palette className="h-7 w-7 text-white drop-shadow-lg" />
               </div>
-              <span className="text-2xl font-black gradient-text">FlowInk</span>
+              <span className="text-3xl font-black bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300">FlowInk</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
               <a href="#problemas" className="text-gray-600 hover:text-purple-600 transition-all duration-300 story-link">Problemas Reales</a>
